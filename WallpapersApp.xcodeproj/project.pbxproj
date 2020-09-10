@@ -10,6 +10,7 @@
 		31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */; };
 		31BCE3AE250AC23300B8E259 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AD250AC23300B8E259 /* ContentView.swift */; };
 		31BCE3B0250AC23500B8E259 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31BCE3AF250AC23500B8E259 /* Assets.xcassets */; };
+		31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE6152250AC7790032CE9D /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,7 @@
 		31BCE3AD250AC23300B8E259 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		31BCE3AF250AC23500B8E259 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31BCE3B4250AC23500B8E259 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31BE6152250AC7790032CE9D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				31BCE3AD250AC23300B8E259 /* ContentView.swift */,
+				31BE6152250AC7790032CE9D /* ImagePicker.swift */,
 				31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */,
 			);
 			path = Sources;
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */,
 				31BCE3AE250AC23300B8E259 /* ContentView.swift in Sources */,
 				31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */,
 			);
