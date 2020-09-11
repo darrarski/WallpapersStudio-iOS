@@ -10,17 +10,17 @@ struct ContentView: View {
   var body: some View {
     NavigationView {
       ZStack {
-          if let image = image {
-            Image(uiImage: image)
-              .scaleEffect(imageScale)
-              .frame(
-                width: image.size.width * image.scale * imageScale,
-                height: image.size.height * image.scale * imageScale
-              )
-              .offset(x: imageOffset.x, y: imageOffset.y)
-          } else {
-            Text("No image loaded")
-          }
+        if let image = image {
+          Image(uiImage: image)
+            .scaleEffect(imageScale)
+            .frame(
+              width: image.size.width * image.scale * imageScale,
+              height: image.size.height * image.scale * imageScale
+            )
+            .offset(x: imageOffset.x, y: imageOffset.y)
+        } else {
+          Text("No image loaded")
+        }
       }
       .onDrag(updateOffset: $imageOffset)
       .onMagnify(updateScale: $imageScale)
