@@ -2,7 +2,7 @@ import UIKit
 import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable {
-  @Binding var image: UIImage?
+  var onImport: (UIImage) -> Void
   @Environment(\.presentationMode) private var presentationMode
 
   func makeCoordinator() -> Coordinator {
@@ -29,7 +29,9 @@ extension ImagePicker {
       _ controller: UIImagePickerController,
       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
-      picker.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+      if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        picker.onImport(image)
+      }
       picker.presentationMode.wrappedValue.dismiss()
     }
 

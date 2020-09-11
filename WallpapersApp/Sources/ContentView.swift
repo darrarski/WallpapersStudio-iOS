@@ -55,7 +55,11 @@ struct ContentView: View {
     }
     .navigationBarHidden(true)
     .sheet(isPresented: $isPresentingImagePicker) {
-      ImagePicker(image: $image)
+      ImagePicker(onImport: {
+        self.image = $0
+        self.imageOffset = .zero
+        self.imageScale = 1.0
+      })
     }
   }
 }
