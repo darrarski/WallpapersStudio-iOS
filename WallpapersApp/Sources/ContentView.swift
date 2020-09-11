@@ -10,6 +10,8 @@ struct ContentView: View {
   var body: some View {
     NavigationView {
       ZStack {
+        Color(.systemBackground)
+          .edgesIgnoringSafeArea(.all)
         if let image = image {
           Image(uiImage: image)
             .scaleEffect(imageScale)
