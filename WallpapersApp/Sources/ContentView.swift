@@ -1,49 +1,60 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State var isPresentingImagePicker = false
-  @State var hideToolbars: Bool = false
+  @State var isPresentingImagePicker: Bool = false
+  @State var isPresentingConfig: Bool = true
   @State var image: UIImage?
   @State var imageOffset: CGPoint = .zero
   @State var imageScale: CGFloat = 1.0
 
   var body: some View {
-    NavigationView {
+    GeometryReader { geometry in
       ZStack {
-        Color(.systemBackground)
-          .edgesIgnoringSafeArea(.all)
-        if let image = image {
-          Image(uiImage: image)
-            .scaleEffect(imageScale)
-            .frame(
-              width: image.size.width * image.scale * imageScale,
-              height: image.size.height * image.scale * imageScale
-            )
-            .offset(x: imageOffset.x, y: imageOffset.y)
-        } else {
-          Text("No image loaded")
+        ZStack {
+          Color(.systemBackground)
+          if let image = image {
+            Image(uiImage: image)
+              .scaleEffect(imageScale)
+              .frame(
+                width: image.size.width * image.scale * imageScale,
+                height: image.size.height * image.scale * imageScale
+              )
+              .offset(x: imageOffset.x, y: imageOffset.y)
+          } else {
+            Text("No image loaded")
+          }
         }
-      }
-      .onDrag(updateOffset: $imageOffset)
-      .onMagnify(updateScale: $imageScale)
-      .onTapGesture {
-        self.hideToolbars.toggle()
-      }
-      .navigationTitle("Wallpaper")
-      .navigationBarTitleDisplayMode(.inline)
-      .navigationBarHidden(hideToolbars)
-      .toolbar {
-        ToolbarItem(placement: .bottomBar) {
-          if !hideToolbars {
-            Button(action: { self.isPresentingImagePicker = true }) {
-              Image(systemName: "square.and.arrow.down")
-            }
+        .edgesIgnoringSafeArea(.all)
+        .frame(
+          width: geometry.size.width,
+          height: geometry.size.height
+        )
+        .onDrag(updateOffset: $imageOffset)
+        .onMagnify(updateScale: $imageScale)
+        .onTapGesture {
+          withAnimation(.spring()) {
+            self.isPresentingConfig.toggle()
+          }
+        }
+
+        VStack {
+          Spacer()
+          if isPresentingConfig {
+            ConfigView(
+              importAction: { self.isPresentingImagePicker = true }
+            )
+            .transition(
+              AnyTransition
+                .move(edge: .bottom)
+                .combined(with: .offset(y: geometry.safeAreaInsets.bottom))
+            )
           }
         }
       }
-      .sheet(isPresented: $isPresentingImagePicker) {
-        ImagePicker(image: $image)
-      }
+    }
+    .navigationBarHidden(true)
+    .sheet(isPresented: $isPresentingImagePicker) {
+      ImagePicker(image: $image)
     }
   }
 }
