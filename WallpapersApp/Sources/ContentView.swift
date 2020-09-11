@@ -32,7 +32,7 @@ struct ContentView: View {
         .onDrag(updateOffset: $imageOffset)
         .onMagnify(updateScale: $imageScale)
         .onTapGesture {
-          withAnimation(.spring()) {
+          withAnimation(.easeInOut) {
             self.isPresentingConfig.toggle()
           }
         }
