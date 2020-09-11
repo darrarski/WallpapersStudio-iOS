@@ -41,7 +41,8 @@ struct ContentView: View {
           Spacer()
           if isPresentingConfig {
             ConfigView(
-              importAction: { self.isPresentingImagePicker = true }
+              importAction: { self.isPresentingImagePicker = true },
+              exportAction: {}
             )
             .transition(
               AnyTransition

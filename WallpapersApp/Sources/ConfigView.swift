@@ -2,18 +2,26 @@ import SwiftUI
 
 struct ConfigView: View {
   var importAction: () -> Void
+  var exportAction: () -> Void
 
   var body: some View {
-    ZStack {
+    VStack(alignment: .leading) {
       Button(action: importAction) {
-        HStack {
+        HStack(alignment: .firstTextBaseline) {
           Image(systemName: "square.and.arrow.down")
-          Text("Import photo")
+          Text("Import photo from library")
         }
         .padding()
       }
-      .frame(height: 250)
+      Button(action: exportAction) {
+        HStack(alignment: .firstTextBaseline) {
+          Image(systemName: "square.and.arrow.up")
+          Text("Export wallpaper to library")
+        }
+        .padding()
+      }
     }
+    .padding()
     .frame(maxWidth: .infinity)
     .background(
       VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
@@ -33,7 +41,10 @@ struct ConfigView_Previews: PreviewProvider {
   static var previews: some View {
     VStack {
       Spacer()
-      ConfigView(importAction: {})
+      ConfigView(
+        importAction: {},
+        exportAction: {}
+      )
     }
     .background(Color.blue.edgesIgnoringSafeArea(.all))
   }
