@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		311BCCF1250BFD710084B100 /* RoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311BCCF0250BFD710084B100 /* RoundedRect.swift */; };
 		314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E28250BBBB40053ACAA /* DragModifier.swift */; };
 		314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */; };
 		31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		311BCCF0250BFD710084B100 /* RoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRect.swift; sourceTree = "<group>"; };
 		314E1E28250BBBB40053ACAA /* DragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragModifier.swift; sourceTree = "<group>"; };
 		314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnificationModifier.swift; sourceTree = "<group>"; };
 		31BCE3A8250AC23300B8E259 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 				314E1E28250BBBB40053ACAA /* DragModifier.swift */,
 				31BE6152250AC7790032CE9D /* ImagePicker.swift */,
 				314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */,
+				311BCCF0250BFD710084B100 /* RoundedRect.swift */,
 				31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */,
 			);
 			path = Sources;
@@ -156,6 +159,7 @@
 				31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */,
 				31BCE3AE250AC23300B8E259 /* ContentView.swift in Sources */,
 				314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */,
+				311BCCF1250BFD710084B100 /* RoundedRect.swift in Sources */,
 				31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */,
 				314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */,
 			);
