@@ -3,14 +3,9 @@ import SwiftUI
 struct ContentView: View {
   @State var isPresentingImagePicker = false
   @State var hideToolbars: Bool = false
-
   @State var image: UIImage?
-
-  @State var imageScale: CGFloat = 1.0
-  @State var lastScaleValue: CGFloat = 1.0
-
   @State var imageOffset: CGPoint = .zero
-  @State var lastOffsetValue: CGPoint = .zero
+  @State var imageScale: CGFloat = 1.0
 
   var body: some View {
     NavigationView {
@@ -27,37 +22,8 @@ struct ContentView: View {
             Text("No image loaded")
           }
       }
-      .gesture(
-        DragGesture()
-          .onChanged { value in
-            let offset = CGPoint(
-              x: value.location.x - value.startLocation.x,
-              y: value.location.y - value.startLocation.y
-            )
-            let delta = CGPoint(
-              x: offset.x - self.lastOffsetValue.x,
-              y: offset.y - self.lastOffsetValue.y
-            )
-            self.lastOffsetValue = offset
-            self.imageOffset.x += delta.x
-            self.imageOffset.y += delta.y
-          }
-          .onEnded { value in
-            self.lastOffsetValue = .zero
-          }
-      )
-      .simultaneousGesture(
-        MagnificationGesture()
-          .onChanged { value in
-            let delta = value / self.lastScaleValue
-            self.lastScaleValue = value
-            self.imageScale *= delta
-          }
-          .onEnded { _ in
-            self.lastScaleValue = 1.0
-          },
-        including: .all
-      )
+      .onDrag(updateOffset: $imageOffset)
+      .onMagnify(updateScale: $imageScale)
       .onTapGesture {
         self.hideToolbars.toggle()
       }
