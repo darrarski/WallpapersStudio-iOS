@@ -18,6 +18,7 @@ struct ContentView: View {
                 width: imageFrame.width,
                 height: imageFrame.height
               )
+              .padding(4)
               .border(Color.accentColor, width: 4)
               .clipShape(RoundedRect(
                 corners: .allCorners,
