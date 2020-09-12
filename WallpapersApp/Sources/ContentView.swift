@@ -25,8 +25,8 @@ struct ContentView: View {
                 radius: CGSize(width: 6, height: 6)
               ))
               .offset(
-                x: imageFrame.center.x - imageFrame.width / 2,
-                y: imageFrame.center.y - imageFrame.height / 2
+                x: imageFrame.minX,
+                y: imageFrame.minY
               )
           } else {
             Text("No image loaded")
@@ -56,7 +56,7 @@ struct ContentView: View {
           if isPresentingConfig {
             ConfigView(
               importAction: { self.isPresentingImagePicker = true },
-              exportAction: self.exportImage
+              exportAction: { self.exportImage(size: geometry.sizeIgnoringSafeArea) }
             )
             .transition(
               AnyTransition
@@ -81,26 +81,24 @@ struct ContentView: View {
     )
   }
 
-  private func exportImage() {
-    // TODO: implement cropping based on image frame
+  private func exportImage(size: CGSize) {
+    guard let image = self.image else { return }
+    let renderingBounds = CGRect(origin: .zero, size: size)
+    let renderingFrame = CGRect(
+      origin: CGPoint(
+        x: (renderingBounds.width - imageFrame.width) / 2 + imageFrame.minX,
+        y: (renderingBounds.height - imageFrame.height) / 2 + imageFrame.minY
+      ),
+      size: imageFrame.size
+    )
+    let renderer = UIGraphicsImageRenderer(bounds: renderingBounds)
+    let exportedImage = renderer.image { context in
+      image.draw(in: renderingFrame)
+    }
 
-    // guard let image = self.image else { return }
-    //
-    // let croppingRect = image.croppingRect(
-    //   size: geometry.sizeIgnoringSafeArea.applying(.scaledBy(1.2)),
-    //   offset: self.imageOffset,
-    //   scale: self.imageScale
-    // )
-    //
-    // let exportedImage = image
-    //   .cropped(to: croppingRect)
-    // // TODO: resize image maintaining aspect ratio
-    //
-    // if let image = exportedImage {
-    //   // TODO: save to photo library
-    //   // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-    //   self.loadImage(image)
-    // }
+    // TODO: save to photo library
+    // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    loadImage(exportedImage)
   }
 }
 
