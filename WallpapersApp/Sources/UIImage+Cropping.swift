@@ -2,7 +2,9 @@ import UIKit
 
 extension UIImage {
   func cropped(to rect: CGRect) -> UIImage? {
-    let croppingRect = rect.scaled(by: scale)
+    let croppingRect = rect
+      .applying(.rotated(angle: imageOrientation.rotationAngle, anchor: rect.center))
+      .applying(.scaledBy(scale))
     guard let cgImage = cgImage?.cropping(to: croppingRect) else {
       return nil
     }
@@ -18,12 +20,13 @@ extension UIImage {
     offset: CGPoint,
     scale: CGFloat
   ) -> CGRect {
-    let imageSize = self.size.scaled(by: self.scale)
-    let croppingSize = size.scaled(by: 1 / scale)
-    let croppingOffset = offset.scaled(by: 1 / scale)
+    let imageRect = CGRect(origin: .zero, size: self.size.applying(.scaledBy(self.scale)))
+      .applying(.rotated(angle: imageOrientation.rotationAngle, anchor: .zero))
+    let croppingSize = size.applying(.scaledBy(1 / scale))
+    let croppingOffset = offset.applying(.scaledBy(1 / scale))
     let croppingOrigin = CGPoint(
-      x: (imageSize.width - croppingSize.width) / 2 - croppingOffset.x,
-      y: (imageSize.height - croppingSize.height) / 2 - croppingOffset.y
+      x: (imageRect.size.width - croppingSize.width) / 2 - croppingOffset.x,
+      y: (imageRect.size.height - croppingSize.height) / 2 - croppingOffset.y
     )
     return CGRect(origin: croppingOrigin, size: croppingSize)
   }
