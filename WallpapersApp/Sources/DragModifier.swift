@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DragModifier: ViewModifier {
-  @Binding var offset: CGPoint
+  var onChange: (CGPoint) -> Void
   @State private var lastOffset: CGPoint = .zero
 
   func body(content: Content) -> some View {
@@ -17,8 +17,7 @@ struct DragModifier: ViewModifier {
             y: offset.y - self.lastOffset.y
           )
           self.lastOffset = offset
-          self.offset.x += delta.x
-          self.offset.y += delta.y
+          self.onChange(delta)
         }
         .onEnded { value in
           self.lastOffset = .zero
@@ -29,7 +28,7 @@ struct DragModifier: ViewModifier {
 }
 
 extension View {
-  func onDrag(updateOffset offset: Binding<CGPoint>) -> some View {
-    modifier(DragModifier(offset: offset))
+  func onDrag(updateOffset onChange: @escaping (CGPoint) -> Void) -> some View {
+    modifier(DragModifier(onChange: onChange))
   }
 }

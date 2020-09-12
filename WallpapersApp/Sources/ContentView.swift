@@ -29,8 +29,13 @@ struct ContentView: View {
           width: geometry.size.width,
           height: geometry.size.height
         )
-        .onDrag(updateOffset: $imageOffset)
-        .onMagnify(updateScale: $imageScale)
+        .onDrag(updateOffset: { delta in
+          self.imageOffset.x += delta.x
+          self.imageOffset.y += delta.y
+        })
+        .onMagnify(updateScale: { delta in
+          self.imageScale *= delta
+        })
         .onTapGesture {
           withAnimation(.easeInOut) {
             self.isPresentingConfig.toggle()

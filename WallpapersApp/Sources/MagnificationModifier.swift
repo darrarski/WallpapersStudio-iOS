@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MagnificationModifier: ViewModifier {
-  @Binding var scale: CGFloat
+  var onChange: (CGFloat) -> Void
   @State private var lastScale: CGFloat = 1
 
   func body(content: Content) -> some View {
@@ -10,7 +10,7 @@ struct MagnificationModifier: ViewModifier {
         .onChanged { value in
           let delta = value / self.lastScale
           self.lastScale = value
-          self.scale *= delta
+          self.onChange(delta)
         }
         .onEnded { value in
           self.lastScale = 1
@@ -21,7 +21,7 @@ struct MagnificationModifier: ViewModifier {
 }
 
 extension View {
-  func onMagnify(updateScale scale: Binding<CGFloat>) -> some View {
-    modifier(MagnificationModifier(scale: scale))
+  func onMagnify(updateScale onChange: @escaping (CGFloat) -> Void) -> some View {
+    modifier(MagnificationModifier(onChange: onChange))
   }
 }
