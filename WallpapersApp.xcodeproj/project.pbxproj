@@ -13,6 +13,7 @@
 		314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E28250BBBB40053ACAA /* DragModifier.swift */; };
 		314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */; };
 		317EBC1D250C59D600E7F7CE /* CG+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CG+Scale.swift */; };
+		317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */; };
 		31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */; };
 		31BCE3AE250AC23300B8E259 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AD250AC23300B8E259 /* ContentView.swift */; };
 		31BCE3B0250AC23500B8E259 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31BCE3AF250AC23500B8E259 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		314E1E28250BBBB40053ACAA /* DragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragModifier.swift; sourceTree = "<group>"; };
 		314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnificationModifier.swift; sourceTree = "<group>"; };
 		317EBC1C250C59D600E7F7CE /* CG+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CG+Scale.swift"; sourceTree = "<group>"; };
+		317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeometryProxy+Size.swift"; sourceTree = "<group>"; };
 		31BCE3A8250AC23300B8E259 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersMain.swift; sourceTree = "<group>"; };
 		31BCE3AD250AC23300B8E259 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				311BCCEE250BF9C00084B100 /* ConfigView.swift */,
 				31BCE3AD250AC23300B8E259 /* ContentView.swift */,
 				314E1E28250BBBB40053ACAA /* DragModifier.swift */,
+				317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */,
 				31BE6152250AC7790032CE9D /* ImagePicker.swift */,
 				314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */,
 				311BCCF0250BFD710084B100 /* RoundedRect.swift */,
@@ -171,6 +174,7 @@
 				314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */,
 				311BCCF1250BFD710084B100 /* RoundedRect.swift in Sources */,
 				311BCCF3250C005A0084B100 /* VisualEffectView.swift in Sources */,
+				317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */,
 				317EBC1D250C59D600E7F7CE /* CG+Scale.swift in Sources */,
 				31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */,
 				314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */,
