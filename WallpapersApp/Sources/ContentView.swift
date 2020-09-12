@@ -60,7 +60,8 @@ struct ContentView: View {
                   // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                   self.image = image
                   self.imageOffset = .zero
-                  self.imageScale = 1.0
+                  // TODO: reset scale
+                  // self.imageScale = 1.0
                 }
               }
             )
