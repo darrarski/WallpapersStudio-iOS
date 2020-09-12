@@ -46,7 +46,7 @@ struct ContentView: View {
                 guard let image = self.image else { return }
 
                 let croppingRect = image.croppingRect(
-                  size: geometry.sizeIgnoringSafeArea,
+                  size: geometry.sizeIgnoringSafeArea.applying(.scaledBy(1.2)),
                   offset: self.imageOffset,
                   scale: self.imageScale
                 )
