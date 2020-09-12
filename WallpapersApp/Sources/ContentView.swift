@@ -42,7 +42,27 @@ struct ContentView: View {
           if isPresentingConfig {
             ConfigView(
               importAction: { self.isPresentingImagePicker = true },
-              exportAction: {}
+              exportAction: {
+                guard let image = self.image else { return }
+
+                let croppingRect = image.croppingRect(
+                  size: geometry.sizeIgnoringSafeArea,
+                  offset: self.imageOffset,
+                  scale: self.imageScale
+                )
+
+                let exportedImage = image
+                  .cropped(to: croppingRect)
+                // TODO: resize image
+
+                if let image = exportedImage {
+                  // TODO: save to photo library
+                  // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                  self.image = image
+                  self.imageOffset = .zero
+                  self.imageScale = 1.0
+                }
+              }
             )
             .transition(
               AnyTransition
