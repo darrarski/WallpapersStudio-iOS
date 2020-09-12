@@ -53,7 +53,7 @@ struct ContentView: View {
 
                 let exportedImage = image
                   .cropped(to: croppingRect)
-                // TODO: resize image
+                // TODO: resize image maintaining aspect ratio
 
                 if let image = exportedImage {
                   // TODO: save to photo library
