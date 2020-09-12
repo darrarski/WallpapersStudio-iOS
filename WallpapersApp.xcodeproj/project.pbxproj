@@ -12,7 +12,6 @@
 		311BCCF3250C005A0084B100 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311BCCF2250C005A0084B100 /* VisualEffectView.swift */; };
 		314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E28250BBBB40053ACAA /* DragModifier.swift */; };
 		314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */; };
-		317EBC1D250C59D600E7F7CE /* CG+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CG+Scale.swift */; };
 		317BB152250D057200FEA20D /* UIImage.Orientation+RotationAngle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB151250D057200FEA20D /* UIImage.Orientation+RotationAngle.swift */; };
 		317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */; };
 		317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB155250D05D600FEA20D /* CGRect+Center.swift */; };
@@ -32,7 +31,6 @@
 		311BCCF2250C005A0084B100 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		314E1E28250BBBB40053ACAA /* DragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragModifier.swift; sourceTree = "<group>"; };
 		314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnificationModifier.swift; sourceTree = "<group>"; };
-		317EBC1C250C59D600E7F7CE /* CG+Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CG+Scale.swift"; sourceTree = "<group>"; };
 		317BB151250D057200FEA20D /* UIImage.Orientation+RotationAngle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage.Orientation+RotationAngle.swift"; sourceTree = "<group>"; };
 		317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Rotated.swift"; sourceTree = "<group>"; };
 		317BB155250D05D600FEA20D /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 		31BE6150250AC6F90032CE9D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				317EBC1C250C59D600E7F7CE /* CG+Scale.swift */,
 				317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */,
 				317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */,
 				317BB155250D05D600FEA20D /* CGRect+Center.swift */,
@@ -196,7 +193,6 @@
 				317EBC1F250C5A4700E7F7CE /* UIImage+Cropping.swift in Sources */,
 				311BCCF3250C005A0084B100 /* VisualEffectView.swift in Sources */,
 				317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */,
-				317EBC1D250C59D600E7F7CE /* CG+Scale.swift in Sources */,
 				317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */,
 				317BB152250D057200FEA20D /* UIImage.Orientation+RotationAngle.swift in Sources */,
 				31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */,
