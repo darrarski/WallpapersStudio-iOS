@@ -29,8 +29,6 @@ let editorReducer = EditorReducer { state, action, env in
         max(viewSize.width / image.size.width, viewSize.height / image.size.height),
         anchor: state.imageFrame.center
       ))
-    state.imageFrame = state.imageFrame
-      .applying(.scaledBy(1.1, anchor: state.imageFrame.center))
     return .none
 
   case .updateImageOffset(let delta):
@@ -50,8 +48,7 @@ let editorReducer = EditorReducer { state, action, env in
 
   case .exportImage(let size):
     guard let image = state.image else { return .none }
-    var renderingBounds = CGRect(origin: .zero, size: size)
-    renderingBounds = renderingBounds.applying(.scaledBy(1.1, anchor: renderingBounds.center))
+    let renderingBounds = CGRect(origin: .zero, size: size)
     let renderer = UIGraphicsImageRenderer(bounds: renderingBounds)
     let exportedImage = renderer.image { _ in
       image.draw(in: state.imageFrame)
