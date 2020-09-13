@@ -1,4 +1,4 @@
-import SwiftUI
+import CoreGraphics
 
 extension CGAffineTransform {
   static func scaledBy(x: CGFloat, y: CGFloat, anchor: CGPoint = .zero) -> CGAffineTransform {
