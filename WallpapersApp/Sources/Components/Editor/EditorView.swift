@@ -3,6 +3,7 @@ import SwiftUI
 
 struct EditorView: View {
   let store: Store<EditorState, EditorAction>
+  let imageBorder: CGFloat = 4
 
   var body: some View {
     GeometryReader { geometry in
@@ -17,15 +18,17 @@ struct EditorView: View {
                   width: viewStore.imageFrame.width,
                   height: viewStore.imageFrame.height
                 )
-                .padding(4)
-                .border(Color.accentColor, width: 4)
+                .padding(imageBorder)
+                .border(Color.accentColor, width: imageBorder)
                 .clipShape(RoundedRect(
                   corners: .allCorners,
-                  radius: CGSize(width: 6, height: 6)
+                  radius: CGSize(width: imageBorder * 1.5, height: imageBorder * 1.5)
                 ))
                 .offset(
-                  x: (viewStore.imageFrame.width - geometry.sizeIgnoringSafeArea.width) / 2 + viewStore.imageFrame.minX,
-                  y: (viewStore.imageFrame.height - geometry.sizeIgnoringSafeArea.height) / 2 + viewStore.imageFrame.minY
+                  x: (viewStore.imageFrame.width - geometry.sizeIgnoringSafeArea.width) / 2
+                    + viewStore.imageFrame.minX,
+                  y: (viewStore.imageFrame.height - geometry.sizeIgnoringSafeArea.height) / 2
+                    + viewStore.imageFrame.minY
                 )
             } else {
               Text("No image loaded")
