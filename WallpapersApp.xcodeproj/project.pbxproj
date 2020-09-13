@@ -17,7 +17,7 @@
 		317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */; };
 		317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */; };
 		3187BD71250EB1FA0033E053 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 3187BD70250EB1FA0033E053 /* ComposableArchitecture */; };
-		31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */; };
+		31BCE3AC250AC23300B8E259 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AB250AC23300B8E259 /* MainApp.swift */; };
 		31BCE3AE250AC23300B8E259 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AD250AC23300B8E259 /* EditorView.swift */; };
 		31BCE3B0250AC23500B8E259 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31BCE3AF250AC23500B8E259 /* Assets.xcassets */; };
 		31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BE6152250AC7790032CE9D /* ImagePicker.swift */; };
@@ -34,7 +34,7 @@
 		317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Scaled.swift"; sourceTree = "<group>"; };
 		317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeometryProxy+Size.swift"; sourceTree = "<group>"; };
 		31BCE3A8250AC23300B8E259 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersMain.swift; sourceTree = "<group>"; };
+		31BCE3AB250AC23300B8E259 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		31BCE3AD250AC23300B8E259 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		31BCE3AF250AC23500B8E259 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31BCE3B4250AC23500B8E259 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,18 +83,8 @@
 		31BE6150250AC6F90032CE9D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */,
-				317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */,
-				317BB155250D05D600FEA20D /* CGRect+Center.swift */,
-				311BCCEE250BF9C00084B100 /* ConfigView.swift */,
-				314E1E28250BBBB40053ACAA /* DragModifier.swift */,
-				31BCE3AD250AC23300B8E259 /* EditorView.swift */,
-				317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */,
-				31BE6152250AC7790032CE9D /* ImagePicker.swift */,
-				314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */,
-				311BCCF0250BFD710084B100 /* RoundedRect.swift */,
-				311BCCF2250C005A0084B100 /* VisualEffectView.swift */,
-				31BCE3AB250AC23300B8E259 /* WallpapersMain.swift */,
+				31F19090250EB33E00F90738 /* Components */,
+				31F19092250EB37700F90738 /* Helpers */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -106,6 +96,88 @@
 				31BCE3B4250AC23500B8E259 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		31F19090250EB33E00F90738 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				31F19095250EB48400F90738 /* Config */,
+				31F19091250EB34700F90738 /* Editor */,
+				31F19094250EB3C300F90738 /* Main */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		31F19091250EB34700F90738 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				31BCE3AD250AC23300B8E259 /* EditorView.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		31F19092250EB37700F90738 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				31F19096250EB4EF00F90738 /* Geometry */,
+				31F19098250EB51100F90738 /* Shapes */,
+				31F19097250EB50200F90738 /* ViewModifiers */,
+				31F19099250EB51C00F90738 /* Views */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		31F19094250EB3C300F90738 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				31BCE3AB250AC23300B8E259 /* MainApp.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		31F19095250EB48400F90738 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				311BCCEE250BF9C00084B100 /* ConfigView.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		31F19096250EB4EF00F90738 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */,
+				317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */,
+				317BB155250D05D600FEA20D /* CGRect+Center.swift */,
+				317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		31F19097250EB50200F90738 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				314E1E28250BBBB40053ACAA /* DragModifier.swift */,
+				314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		31F19098250EB51100F90738 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				311BCCF0250BFD710084B100 /* RoundedRect.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		31F19099250EB51C00F90738 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				31BE6152250AC7790032CE9D /* ImagePicker.swift */,
+				311BCCF2250C005A0084B100 /* VisualEffectView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,7 +263,7 @@
 				311BCCF3250C005A0084B100 /* VisualEffectView.swift in Sources */,
 				317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */,
 				317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */,
-				31BCE3AC250AC23300B8E259 /* WallpapersMain.swift in Sources */,
+				31BCE3AC250AC23300B8E259 /* MainApp.swift in Sources */,
 				314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */,
 				317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */,
 			);

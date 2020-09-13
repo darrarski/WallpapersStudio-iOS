@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct WallpapersMain: App {
+struct MainApp: App {
   var body: some Scene {
     WindowGroup {
       EditorView()
