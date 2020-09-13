@@ -1,10 +1,15 @@
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct MainApp: App {
   var body: some Scene {
     WindowGroup {
-      EditorView()
+      EditorView(store: Store(
+        initialState: EditorState(),
+        reducer: editorReducer,
+        environment: EditorEnvironment()
+      ))
     }
   }
 }
