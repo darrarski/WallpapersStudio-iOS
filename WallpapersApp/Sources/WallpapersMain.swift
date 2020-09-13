@@ -4,7 +4,7 @@ import SwiftUI
 struct WallpapersMain: App {
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      EditorView()
     }
   }
 }

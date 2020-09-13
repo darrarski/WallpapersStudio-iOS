@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct EditorView: View {
   @State var isPresentingImagePicker: Bool = false
   @State var isPresentingConfig: Bool = true
   @State var image: UIImage?
@@ -112,9 +112,9 @@ struct ContentView: View {
 }
 
 #if DEBUG
-struct ContentView_Previews: PreviewProvider {
+struct EditorView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    EditorView()
   }
 }
 #endif
