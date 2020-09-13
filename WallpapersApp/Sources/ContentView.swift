@@ -25,8 +25,8 @@ struct ContentView: View {
                 radius: CGSize(width: 6, height: 6)
               ))
               .offset(
-                x: imageFrame.minX,
-                y: imageFrame.minY
+                x: (imageFrame.width - geometry.sizeIgnoringSafeArea.width) / 2 + imageFrame.minX,
+                y: (imageFrame.height - geometry.sizeIgnoringSafeArea.height) / 2 + imageFrame.minY
               )
           } else {
             Text("No image loaded")
@@ -43,7 +43,13 @@ struct ContentView: View {
         })
         .onMagnify(updateScale: { delta in
           self.imageFrame = self.imageFrame
-            .applying(.scaledBy(delta))
+            .applying(.scaledBy(
+              delta,
+              anchor: CGPoint(
+                x: geometry.sizeIgnoringSafeArea.width / 2,
+                y: geometry.sizeIgnoringSafeArea.height / 2
+              )
+            ))
         })
         .onTapGesture {
           withAnimation(.easeInOut) {
@@ -83,17 +89,11 @@ struct ContentView: View {
 
   private func exportImage(size: CGSize) {
     guard let image = self.image else { return }
-    let renderingBounds = CGRect(origin: .zero, size: size)
-    let renderingFrame = CGRect(
-      origin: CGPoint(
-        x: (renderingBounds.width - imageFrame.width) / 2 + imageFrame.minX,
-        y: (renderingBounds.height - imageFrame.height) / 2 + imageFrame.minY
-      ),
-      size: imageFrame.size
+    let renderer = UIGraphicsImageRenderer(
+      bounds: CGRect(origin: .zero, size: size)
     )
-    let renderer = UIGraphicsImageRenderer(bounds: renderingBounds)
     let exportedImage = renderer.image { context in
-      image.draw(in: renderingFrame)
+      image.draw(in: imageFrame)
     }
 
     // TODO: save to photo library
