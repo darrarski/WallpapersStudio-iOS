@@ -93,13 +93,14 @@ struct ContentView: View {
         max(size.width / image.size.width, size.height / image.size.height),
         anchor: self.imageFrame.center
       ))
+    self.imageFrame = self.imageFrame.applying(.scaledBy(1.1, anchor: self.imageFrame.center))
   }
 
   private func exportImage(size: CGSize) {
     guard let image = self.image else { return }
-    let renderer = UIGraphicsImageRenderer(
-      bounds: CGRect(origin: .zero, size: size)
-    )
+    var renderingBounds = CGRect(origin: .zero, size: size)
+    renderingBounds = renderingBounds.applying(.scaledBy(1.1, anchor: renderingBounds.center))
+    let renderer = UIGraphicsImageRenderer(bounds: renderingBounds)
     let exportedImage = renderer.image { context in
       image.draw(in: imageFrame)
     }
