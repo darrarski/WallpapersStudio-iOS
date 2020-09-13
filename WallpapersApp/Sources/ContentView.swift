@@ -72,19 +72,27 @@ struct ContentView: View {
           }
         }
       }
-    }
-    .navigationBarHidden(true)
-    .sheet(isPresented: $isPresentingImagePicker) {
-      ImagePicker(onImport: self.loadImage(_:))
+      .navigationBarHidden(true)
+      .sheet(isPresented: $isPresentingImagePicker) {
+        ImagePicker(onImport: { self.loadImage($0, fill: geometry.sizeIgnoringSafeArea) })
+      }
     }
   }
 
-  private func loadImage(_ image: UIImage) {
+  private func loadImage(_ image: UIImage, fill size: CGSize) {
     self.image = image
     self.imageFrame = CGRect(
-      origin: .zero,
+      origin: CGPoint(
+        x: (image.size.width - size.width) / -2,
+        y: (image.size.height - size.height) / -2
+      ),
       size: image.size
     )
+    self.imageFrame = self.imageFrame
+      .applying(.scaledBy(
+        max(size.width / image.size.width, size.height / image.size.height),
+        anchor: self.imageFrame.center
+      ))
   }
 
   private func exportImage(size: CGSize) {
@@ -98,7 +106,7 @@ struct ContentView: View {
 
     // TODO: save to photo library
     // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-    loadImage(exportedImage)
+    loadImage(exportedImage, fill: size)
   }
 }
 
