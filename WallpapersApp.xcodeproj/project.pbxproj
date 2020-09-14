@@ -28,7 +28,6 @@
 		315D89DE250FBD4000DFF6FC /* EditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89DC250FBD2700DFF6FC /* EditorViewTests.swift */; };
 		315D89E1250FBE5E00DFF6FC /* CanvasViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89E0250FBE5E00DFF6FC /* CanvasViewTests.swift */; };
 		315D89E3250FC06F00DFF6FC /* CanvasReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89E2250FC06F00DFF6FC /* CanvasReducerTests.swift */; };
-		317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */; };
 		317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB155250D05D600FEA20D /* CGRect+Center.swift */; };
 		317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */; };
 		317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */; };
@@ -83,7 +82,6 @@
 		315D89DC250FBD2700DFF6FC /* EditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewTests.swift; sourceTree = "<group>"; };
 		315D89E0250FBE5E00DFF6FC /* CanvasViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewTests.swift; sourceTree = "<group>"; };
 		315D89E2250FC06F00DFF6FC /* CanvasReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasReducerTests.swift; sourceTree = "<group>"; };
-		317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Rotated.swift"; sourceTree = "<group>"; };
 		317BB155250D05D600FEA20D /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
 		317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Scaled.swift"; sourceTree = "<group>"; };
 		317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeometryProxy+Size.swift"; sourceTree = "<group>"; };
@@ -302,7 +300,6 @@
 		31F19096250EB4EF00F90738 /* Geometry */ = {
 			isa = PBXGroup;
 			children = (
-				317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */,
 				317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */,
 				317BB155250D05D600FEA20D /* CGRect+Center.swift */,
 				317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */,
@@ -466,7 +463,6 @@
 				31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */,
 				31D7D23D250EB65300BEC3EA /* EditorReducer.swift in Sources */,
 				31BCE3AE250AC23300B8E259 /* EditorView.swift in Sources */,
-				317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */,
 				31D7D248250EDBDF00BEC3EA /* View+Frame.swift in Sources */,
 				31D7D246250ED72E00BEC3EA /* CanvasView.swift in Sources */,
 				314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */,
