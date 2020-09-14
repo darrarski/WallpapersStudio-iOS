@@ -26,6 +26,7 @@
 		31D7D23D250EB65300BEC3EA /* EditorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D23C250EB65300BEC3EA /* EditorReducer.swift */; };
 		31D7D23F250EB66100BEC3EA /* EditorEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D23E250EB66100BEC3EA /* EditorEnvironment.swift */; };
 		31D7D241250EB67400BEC3EA /* EditorViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D240250EB67400BEC3EA /* EditorViewState.swift */; };
+		31D7D248250EDBDF00BEC3EA /* View+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D247250EDBDF00BEC3EA /* View+Frame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		31D7D23C250EB65300BEC3EA /* EditorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorReducer.swift; sourceTree = "<group>"; };
 		31D7D23E250EB66100BEC3EA /* EditorEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorEnvironment.swift; sourceTree = "<group>"; };
 		31D7D240250EB67400BEC3EA /* EditorViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewState.swift; sourceTree = "<group>"; };
+		31D7D247250EDBDF00BEC3EA /* View+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Frame.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			children = (
 				314E1E28250BBBB40053ACAA /* DragModifier.swift */,
 				314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */,
+				31D7D247250EDBDF00BEC3EA /* View+Frame.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				31D7D23D250EB65300BEC3EA /* EditorReducer.swift in Sources */,
 				31BCE3AE250AC23300B8E259 /* EditorView.swift in Sources */,
 				317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */,
+				31D7D248250EDBDF00BEC3EA /* View+Frame.swift in Sources */,
 				314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */,
 				31D7D241250EB67400BEC3EA /* EditorViewState.swift in Sources */,
 				311BCCF1250BFD710084B100 /* RoundedRect.swift in Sources */,
