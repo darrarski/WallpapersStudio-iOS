@@ -3,12 +3,17 @@ import ComposableArchitecture
 
 @main
 struct MainApp: App {
+  let store = Store<MainState, MainAction>(
+    initialState: MainState(),
+    reducer: mainReducer,
+    environment: ()
+  )
+
   var body: some Scene {
     WindowGroup {
-      EditorView(store: Store(
-        initialState: EditorState(),
-        reducer: editorReducer,
-        environment: ()
+      EditorView(store: store.scope(
+        state: \.editor,
+        action: MainAction.editor
       ))
     }
   }

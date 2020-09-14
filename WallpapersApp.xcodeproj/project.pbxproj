@@ -16,6 +16,9 @@
 		315D89A9250F88ED00DFF6FC /* MenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89A8250F88ED00DFF6FC /* MenuAction.swift */; };
 		315D89AB250F88F600DFF6FC /* MenuReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AA250F88F600DFF6FC /* MenuReducer.swift */; };
 		315D89AD250F89A600DFF6FC /* MenuViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AC250F89A600DFF6FC /* MenuViewState.swift */; };
+		315D89AF250FAD7000DFF6FC /* MainState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AE250FAD7000DFF6FC /* MainState.swift */; };
+		315D89B1250FAE6100DFF6FC /* MainAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89B0250FAE6100DFF6FC /* MainAction.swift */; };
+		315D89B3250FAE6A00DFF6FC /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89B2250FAE6A00DFF6FC /* MainReducer.swift */; };
 		317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */; };
 		317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB155250D05D600FEA20D /* CGRect+Center.swift */; };
 		317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */; };
@@ -48,6 +51,9 @@
 		315D89A8250F88ED00DFF6FC /* MenuAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAction.swift; sourceTree = "<group>"; };
 		315D89AA250F88F600DFF6FC /* MenuReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReducer.swift; sourceTree = "<group>"; };
 		315D89AC250F89A600DFF6FC /* MenuViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewState.swift; sourceTree = "<group>"; };
+		315D89AE250FAD7000DFF6FC /* MainState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainState.swift; sourceTree = "<group>"; };
+		315D89B0250FAE6100DFF6FC /* MainAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAction.swift; sourceTree = "<group>"; };
+		315D89B2250FAE6A00DFF6FC /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
 		317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Rotated.swift"; sourceTree = "<group>"; };
 		317BB155250D05D600FEA20D /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
 		317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Scaled.swift"; sourceTree = "<group>"; };
@@ -178,7 +184,10 @@
 		31F19094250EB3C300F90738 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				315D89B0250FAE6100DFF6FC /* MainAction.swift */,
 				31BCE3AB250AC23300B8E259 /* MainApp.swift */,
+				315D89B2250FAE6A00DFF6FC /* MainReducer.swift */,
+				315D89AE250FAD7000DFF6FC /* MainState.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				315D89AF250FAD7000DFF6FC /* MainState.swift in Sources */,
 				31D7D255250EFFD900BEC3EA /* CanvasViewState.swift in Sources */,
 				311BCCEF250BF9C00084B100 /* MenuView.swift in Sources */,
 				31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */,
@@ -324,6 +334,8 @@
 				317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */,
 				31D7D253250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift in Sources */,
 				317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */,
+				315D89B1250FAE6100DFF6FC /* MainAction.swift in Sources */,
+				315D89B3250FAE6A00DFF6FC /* MainReducer.swift in Sources */,
 				31D7D251250EF75400BEC3EA /* CanvasReducer.swift in Sources */,
 				31D7D24D250EF6D700BEC3EA /* CanvasState.swift in Sources */,
 				315D89AB250F88F600DFF6FC /* MenuReducer.swift in Sources */,
