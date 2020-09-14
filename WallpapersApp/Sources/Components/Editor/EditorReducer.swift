@@ -10,14 +10,19 @@ let editorReducer = EditorReducer.combine(
     action: /EditorAction.canvas,
     environment: { _ in () }
   ),
+  menuReducer.pullback(
+    state: \.menu,
+    action: /EditorAction.menu,
+    environment: { _ in () }
+  ),
   EditorReducer { state, action, _ in
     switch action {
     case .presentImagePicker(let present):
       state.isPresentingImagePicker = present
       return .none
 
-    case .toggleConfig:
-      state.isPresentingConfig.toggle()
+    case .toggleMenu:
+      state.isPresentingMenu.toggle()
       return .none
 
     case .loadImage(let image):
@@ -26,6 +31,7 @@ let editorReducer = EditorReducer.combine(
         image: image,
         frame: CGRect(origin: .zero, size: image.size)
       )
+      state.menu.isImageLoaded = true
       return .init(value: .canvas(.scaleToFill))
 
     case .exportImage:
@@ -45,6 +51,12 @@ let editorReducer = EditorReducer.combine(
 
     case .canvas(_):
       return .none
+
+    case .menu(.importFromLibrary):
+      return .init(value: .presentImagePicker(true))
+
+    case .menu(.exportToLibrary):
+      return .init(value: .exportImage)
     }
   }
 ).debug()

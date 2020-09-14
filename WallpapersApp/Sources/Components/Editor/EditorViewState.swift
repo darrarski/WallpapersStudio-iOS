@@ -1,11 +1,11 @@
 struct EditorViewState: Equatable {
   let isImageLoaded: Bool
   let isPresentingImagePicker: Bool
-  let isPresentingConfig: Bool
+  let isPresentingMenu: Bool
 
   init(state: EditorState) {
     isImageLoaded = state.canvas != nil
     isPresentingImagePicker = state.isPresentingImagePicker
-    isPresentingConfig = state.isPresentingConfig
+    isPresentingMenu = state.isPresentingMenu
   }
 }

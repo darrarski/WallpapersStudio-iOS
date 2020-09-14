@@ -3,6 +3,7 @@ import struct CoreGraphics.CGRect
 
 struct EditorState {
   var canvas: CanvasState?
+  var menu = MenuState()
   var isPresentingImagePicker = false
-  var isPresentingConfig = true
+  var isPresentingMenu = true
 }

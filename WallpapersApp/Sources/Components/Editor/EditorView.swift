@@ -26,17 +26,17 @@ struct EditorView: View {
           }
           .onTapGesture {
             withAnimation(.easeInOut) {
-              viewStore.send(.toggleConfig)
+              viewStore.send(.toggleMenu)
             }
           }
 
           VStack {
             Spacer()
-            if viewStore.isPresentingConfig {
-              ConfigView(
-                importAction: { viewStore.send(.presentImagePicker(true)) },
-                exportAction: { viewStore.send(.exportImage) }
-              )
+            if viewStore.isPresentingMenu {
+              MenuView(store: store.scope(
+                state: \.menu,
+                action: EditorAction.menu
+              ))
               .transition(
                 AnyTransition
                   .move(edge: .bottom)

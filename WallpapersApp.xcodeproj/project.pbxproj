@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		311BCCEF250BF9C00084B100 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311BCCEE250BF9C00084B100 /* ConfigView.swift */; };
+		311BCCEF250BF9C00084B100 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311BCCEE250BF9C00084B100 /* MenuView.swift */; };
 		311BCCF1250BFD710084B100 /* RoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311BCCF0250BFD710084B100 /* RoundedRect.swift */; };
 		311BCCF3250C005A0084B100 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311BCCF2250C005A0084B100 /* VisualEffectView.swift */; };
 		314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E28250BBBB40053ACAA /* DragModifier.swift */; };
 		314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */; };
+		315D89A7250F88E000DFF6FC /* MenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89A6250F88E000DFF6FC /* MenuState.swift */; };
+		315D89A9250F88ED00DFF6FC /* MenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89A8250F88ED00DFF6FC /* MenuAction.swift */; };
+		315D89AB250F88F600DFF6FC /* MenuReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AA250F88F600DFF6FC /* MenuReducer.swift */; };
+		315D89AD250F89A600DFF6FC /* MenuViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AC250F89A600DFF6FC /* MenuViewState.swift */; };
 		317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */; };
 		317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB155250D05D600FEA20D /* CGRect+Center.swift */; };
 		317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */; };
@@ -35,11 +39,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		311BCCEE250BF9C00084B100 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
+		311BCCEE250BF9C00084B100 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		311BCCF0250BFD710084B100 /* RoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRect.swift; sourceTree = "<group>"; };
 		311BCCF2250C005A0084B100 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		314E1E28250BBBB40053ACAA /* DragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragModifier.swift; sourceTree = "<group>"; };
 		314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnificationModifier.swift; sourceTree = "<group>"; };
+		315D89A6250F88E000DFF6FC /* MenuState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuState.swift; sourceTree = "<group>"; };
+		315D89A8250F88ED00DFF6FC /* MenuAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAction.swift; sourceTree = "<group>"; };
+		315D89AA250F88F600DFF6FC /* MenuReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReducer.swift; sourceTree = "<group>"; };
+		315D89AC250F89A600DFF6FC /* MenuViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewState.swift; sourceTree = "<group>"; };
 		317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Rotated.swift"; sourceTree = "<group>"; };
 		317BB155250D05D600FEA20D /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
 		317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Scaled.swift"; sourceTree = "<group>"; };
@@ -137,9 +145,9 @@
 			isa = PBXGroup;
 			children = (
 				31D7D244250ED72100BEC3EA /* Canvas */,
-				31F19095250EB48400F90738 /* Config */,
 				31F19091250EB34700F90738 /* Editor */,
 				31F19094250EB3C300F90738 /* Main */,
+				31F19095250EB48400F90738 /* Menu */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -175,12 +183,16 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		31F19095250EB48400F90738 /* Config */ = {
+		31F19095250EB48400F90738 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				311BCCEE250BF9C00084B100 /* ConfigView.swift */,
+				315D89A8250F88ED00DFF6FC /* MenuAction.swift */,
+				315D89AA250F88F600DFF6FC /* MenuReducer.swift */,
+				315D89A6250F88E000DFF6FC /* MenuState.swift */,
+				311BCCEE250BF9C00084B100 /* MenuView.swift */,
+				315D89AC250F89A600DFF6FC /* MenuViewState.swift */,
 			);
-			path = Config;
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		31F19096250EB4EF00F90738 /* Geometry */ = {
@@ -296,7 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31D7D255250EFFD900BEC3EA /* CanvasViewState.swift in Sources */,
-				311BCCEF250BF9C00084B100 /* ConfigView.swift in Sources */,
+				311BCCEF250BF9C00084B100 /* MenuView.swift in Sources */,
 				31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */,
 				31D7D23D250EB65300BEC3EA /* EditorReducer.swift in Sources */,
 				31BCE3AE250AC23300B8E259 /* EditorView.swift in Sources */,
@@ -305,6 +317,7 @@
 				31D7D246250ED72E00BEC3EA /* CanvasView.swift in Sources */,
 				314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */,
 				31D7D241250EB67400BEC3EA /* EditorViewState.swift in Sources */,
+				315D89AD250F89A600DFF6FC /* MenuViewState.swift in Sources */,
 				31D7D24F250EF74100BEC3EA /* CanvasAction.swift in Sources */,
 				311BCCF1250BFD710084B100 /* RoundedRect.swift in Sources */,
 				311BCCF3250C005A0084B100 /* VisualEffectView.swift in Sources */,
@@ -313,10 +326,13 @@
 				317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */,
 				31D7D251250EF75400BEC3EA /* CanvasReducer.swift in Sources */,
 				31D7D24D250EF6D700BEC3EA /* CanvasState.swift in Sources */,
+				315D89AB250F88F600DFF6FC /* MenuReducer.swift in Sources */,
 				31BCE3AC250AC23300B8E259 /* MainApp.swift in Sources */,
+				315D89A7250F88E000DFF6FC /* MenuState.swift in Sources */,
 				31D7D23B250EB64500BEC3EA /* EditorAction.swift in Sources */,
 				314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */,
 				317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */,
+				315D89A9250F88ED00DFF6FC /* MenuAction.swift in Sources */,
 				31D7D239250EB63B00BEC3EA /* EditorState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
