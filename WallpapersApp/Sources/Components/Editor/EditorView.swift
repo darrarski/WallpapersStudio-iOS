@@ -3,7 +3,6 @@ import SwiftUI
 
 struct EditorView: View {
   let store: Store<EditorState, EditorAction>
-  let imageBorder: CGFloat = 4
 
   var body: some View {
     GeometryReader { geometry in
@@ -11,43 +10,20 @@ struct EditorView: View {
         ZStack {
           ZStack {
             Color(.systemBackground)
-            if let image = viewStore.image {
-              Image(uiImage: image)
-                .resizable()
-                .frame(
-                  width: viewStore.imageFrame.width,
-                  height: viewStore.imageFrame.height
-                )
-                .padding(imageBorder)
-                .border(Color.accentColor, width: imageBorder)
-                .clipShape(RoundedRect(
-                  corners: .allCorners,
-                  radius: CGSize(width: imageBorder * 1.5, height: imageBorder * 1.5)
-                ))
-                .offset(
-                  x: (viewStore.imageFrame.width - geometry.sizeIgnoringSafeArea.width) / 2
-                    + viewStore.imageFrame.minX,
-                  y: (viewStore.imageFrame.height - geometry.sizeIgnoringSafeArea.height) / 2
-                    + viewStore.imageFrame.minY
-                )
-            } else {
+              .edgesIgnoringSafeArea(.all)
+
+            IfLetStore(
+              store.scope(
+                state: \.canvas,
+                action: EditorAction.canvas
+              ),
+              then: CanvasView.init(store:)
+            )
+
+            if viewStore.isImageLoaded == false {
               Text("No image loaded")
             }
           }
-          .edgesIgnoringSafeArea(.all)
-          .frame(
-            width: geometry.size.width,
-            height: geometry.size.height
-          )
-          .onDrag(updateOffset: { delta in
-            viewStore.send(.updateImageOffset(delta: delta))
-          })
-          .onMagnify(updateScale: { delta in
-            viewStore.send(.updateImageScale(
-              delta: delta,
-              viewSize: geometry.sizeIgnoringSafeArea
-            ))
-          })
           .onTapGesture {
             withAnimation(.easeInOut) {
               viewStore.send(.toggleConfig)
@@ -59,7 +35,7 @@ struct EditorView: View {
             if viewStore.isPresentingConfig {
               ConfigView(
                 importAction: { viewStore.send(.presentImagePicker(true)) },
-                exportAction: { viewStore.send(.exportImage(size: geometry.sizeIgnoringSafeArea)) }
+                exportAction: { viewStore.send(.exportImage) }
               )
               .transition(
                 AnyTransition
@@ -75,7 +51,7 @@ struct EditorView: View {
           send: EditorAction.presentImagePicker
         )) {
           ImagePicker(onImport: { image in
-            viewStore.send(.loadImage(image, viewSize: geometry.sizeIgnoringSafeArea))
+            viewStore.send(.loadImage(image))
           })
         }
       }
@@ -89,7 +65,7 @@ struct EditorView_Previews: PreviewProvider {
     EditorView(store: Store(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: ()
     ))
   }
 }

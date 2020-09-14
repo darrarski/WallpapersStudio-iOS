@@ -8,7 +8,7 @@ struct MainApp: App {
       EditorView(store: Store(
         initialState: EditorState(),
         reducer: editorReducer,
-        environment: EditorEnvironment()
+        environment: ()
       ))
     }
   }

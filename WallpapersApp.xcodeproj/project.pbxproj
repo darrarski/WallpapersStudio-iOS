@@ -24,9 +24,14 @@
 		31D7D239250EB63B00BEC3EA /* EditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D238250EB63B00BEC3EA /* EditorState.swift */; };
 		31D7D23B250EB64500BEC3EA /* EditorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D23A250EB64500BEC3EA /* EditorAction.swift */; };
 		31D7D23D250EB65300BEC3EA /* EditorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D23C250EB65300BEC3EA /* EditorReducer.swift */; };
-		31D7D23F250EB66100BEC3EA /* EditorEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D23E250EB66100BEC3EA /* EditorEnvironment.swift */; };
 		31D7D241250EB67400BEC3EA /* EditorViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D240250EB67400BEC3EA /* EditorViewState.swift */; };
+		31D7D246250ED72E00BEC3EA /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D245250ED72E00BEC3EA /* CanvasView.swift */; };
 		31D7D248250EDBDF00BEC3EA /* View+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D247250EDBDF00BEC3EA /* View+Frame.swift */; };
+		31D7D24D250EF6D700BEC3EA /* CanvasState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D24C250EF6D700BEC3EA /* CanvasState.swift */; };
+		31D7D24F250EF74100BEC3EA /* CanvasAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D24E250EF74100BEC3EA /* CanvasAction.swift */; };
+		31D7D251250EF75400BEC3EA /* CanvasReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D250250EF75400BEC3EA /* CanvasReducer.swift */; };
+		31D7D253250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D252250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift */; };
+		31D7D255250EFFD900BEC3EA /* CanvasViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D254250EFFD900BEC3EA /* CanvasViewState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,9 +53,14 @@
 		31D7D238250EB63B00BEC3EA /* EditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorState.swift; sourceTree = "<group>"; };
 		31D7D23A250EB64500BEC3EA /* EditorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorAction.swift; sourceTree = "<group>"; };
 		31D7D23C250EB65300BEC3EA /* EditorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorReducer.swift; sourceTree = "<group>"; };
-		31D7D23E250EB66100BEC3EA /* EditorEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorEnvironment.swift; sourceTree = "<group>"; };
 		31D7D240250EB67400BEC3EA /* EditorViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewState.swift; sourceTree = "<group>"; };
+		31D7D245250ED72E00BEC3EA /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		31D7D247250EDBDF00BEC3EA /* View+Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Frame.swift"; sourceTree = "<group>"; };
+		31D7D24C250EF6D700BEC3EA /* CanvasState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasState.swift; sourceTree = "<group>"; };
+		31D7D24E250EF74100BEC3EA /* CanvasAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasAction.swift; sourceTree = "<group>"; };
+		31D7D250250EF75400BEC3EA /* CanvasReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasReducer.swift; sourceTree = "<group>"; };
+		31D7D252250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasSizePreferenceKey.swift; sourceTree = "<group>"; };
+		31D7D254250EFFD900BEC3EA /* CanvasViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +120,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		31D7D244250ED72100BEC3EA /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				31D7D24E250EF74100BEC3EA /* CanvasAction.swift */,
+				31D7D250250EF75400BEC3EA /* CanvasReducer.swift */,
+				31D7D252250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift */,
+				31D7D24C250EF6D700BEC3EA /* CanvasState.swift */,
+				31D7D245250ED72E00BEC3EA /* CanvasView.swift */,
+				31D7D254250EFFD900BEC3EA /* CanvasViewState.swift */,
+			);
+			path = Canvas;
+			sourceTree = "<group>";
+		};
 		31F19090250EB33E00F90738 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				31D7D244250ED72100BEC3EA /* Canvas */,
 				31F19095250EB48400F90738 /* Config */,
 				31F19091250EB34700F90738 /* Editor */,
 				31F19094250EB3C300F90738 /* Main */,
@@ -124,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				31D7D23A250EB64500BEC3EA /* EditorAction.swift */,
-				31D7D23E250EB66100BEC3EA /* EditorEnvironment.swift */,
 				31D7D23C250EB65300BEC3EA /* EditorReducer.swift */,
 				31D7D238250EB63B00BEC3EA /* EditorState.swift */,
 				31BCE3AD250AC23300B8E259 /* EditorView.swift */,
@@ -272,23 +295,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D7D255250EFFD900BEC3EA /* CanvasViewState.swift in Sources */,
 				311BCCEF250BF9C00084B100 /* ConfigView.swift in Sources */,
 				31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */,
 				31D7D23D250EB65300BEC3EA /* EditorReducer.swift in Sources */,
 				31BCE3AE250AC23300B8E259 /* EditorView.swift in Sources */,
 				317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */,
 				31D7D248250EDBDF00BEC3EA /* View+Frame.swift in Sources */,
+				31D7D246250ED72E00BEC3EA /* CanvasView.swift in Sources */,
 				314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */,
 				31D7D241250EB67400BEC3EA /* EditorViewState.swift in Sources */,
+				31D7D24F250EF74100BEC3EA /* CanvasAction.swift in Sources */,
 				311BCCF1250BFD710084B100 /* RoundedRect.swift in Sources */,
 				311BCCF3250C005A0084B100 /* VisualEffectView.swift in Sources */,
 				317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */,
+				31D7D253250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift in Sources */,
 				317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */,
+				31D7D251250EF75400BEC3EA /* CanvasReducer.swift in Sources */,
+				31D7D24D250EF6D700BEC3EA /* CanvasState.swift in Sources */,
 				31BCE3AC250AC23300B8E259 /* MainApp.swift in Sources */,
 				31D7D23B250EB64500BEC3EA /* EditorAction.swift in Sources */,
 				314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */,
 				317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */,
-				31D7D23F250EB66100BEC3EA /* EditorEnvironment.swift in Sources */,
 				31D7D239250EB63B00BEC3EA /* EditorState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

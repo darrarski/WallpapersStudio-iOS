@@ -1,61 +1,50 @@
 import ComposableArchitecture
-import struct CoreGraphics.CGRect
-import struct CoreGraphics.CGPoint
+import CoreGraphics
 import class UIKit.UIGraphicsImageRenderer
 
-typealias EditorReducer = Reducer<EditorState, EditorAction, EditorEnvironment>
+typealias EditorReducer = Reducer<EditorState, EditorAction, Void>
 
-let editorReducer = EditorReducer { state, action, env in
-  switch action {
-  case .presentImagePicker(let present):
-    state.isPresentingImagePicker = present
-    return .none
+let editorReducer = EditorReducer.combine(
+  canvasReducer.optional().pullback(
+    state: \.canvas,
+    action: /EditorAction.canvas,
+    environment: { _ in () }
+  ),
+  EditorReducer { state, action, _ in
+    switch action {
+    case .presentImagePicker(let present):
+      state.isPresentingImagePicker = present
+      return .none
 
-  case .toggleConfig:
-    state.isPresentingConfig.toggle()
-    return .none
+    case .toggleConfig:
+      state.isPresentingConfig.toggle()
+      return .none
 
-  case .loadImage(let image, let viewSize):
-    state.image = image
-    state.imageFrame = CGRect(
-      origin: CGPoint(
-        x: (image.size.width - viewSize.width) / -2,
-        y: (image.size.height - viewSize.height) / -2
-      ),
-      size: image.size
-    )
-    state.imageFrame = state.imageFrame
-      .applying(.scaledBy(
-        max(viewSize.width / image.size.width, viewSize.height / image.size.height),
-        anchor: state.imageFrame.center
-      ))
-    return .none
+    case .loadImage(let image):
+      state.canvas = CanvasState(
+        size: state.canvas?.size ?? .zero,
+        image: image,
+        frame: CGRect(origin: .zero, size: image.size)
+      )
+      return .init(value: .canvas(.scaleToFill))
 
-  case .updateImageOffset(let delta):
-    state.imageFrame = state.imageFrame.applying(
-      .init(translationX: delta.x, y: delta.y)
-    )
-    return .none
+    case .exportImage:
+      guard let canvas = state.canvas else { return .none }
+      let renderingBounds = CGRect(origin: .zero, size: canvas.size)
+      let renderer = UIGraphicsImageRenderer(bounds: renderingBounds)
+      let exportedImage = renderer.image { _ in
+        canvas.image.draw(in: canvas.frame)
+      }
+      // TODO: save to photo library
+      // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+      // return .none
+      return .merge(
+        .init(value: .loadImage(exportedImage)),
+        .init(value: .canvas(.scaleToFill))
+      )
 
-  case .updateImageScale(let delta, let viewSize):
-    state.imageFrame = state.imageFrame.applying(
-      .scaledBy(delta, anchor: CGPoint(
-        x: viewSize.width / 2,
-        y: viewSize.height / 2
-      ))
-    )
-    return .none
-
-  case .exportImage(let size):
-    guard let image = state.image else { return .none }
-    let renderingBounds = CGRect(origin: .zero, size: size)
-    let renderer = UIGraphicsImageRenderer(bounds: renderingBounds)
-    let exportedImage = renderer.image { _ in
-      image.draw(in: state.imageFrame)
+    case .canvas(_):
+      return .none
     }
-    // TODO: save to photo library
-    // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-    // return .none
-    return .init(value: .loadImage(exportedImage, viewSize: size))
   }
-}.debug()
+).debug()
