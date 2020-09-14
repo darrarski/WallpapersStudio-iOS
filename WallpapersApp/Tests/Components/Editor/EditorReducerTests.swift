@@ -19,7 +19,8 @@ final class EditorReducerTests: XCTestCase {
 
   func testPresentImagePicker() {
     store.assert(
-      .send(.presentImagePicker(true)) {
+      .send(.menu(.importFromLibrary)),
+      .receive(.presentImagePicker(true)) {
         $0.isPresentingImagePicker = true
       },
       .send(.presentImagePicker(false)) {
