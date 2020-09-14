@@ -1,8 +1,7 @@
 import ComposableArchitecture
 import CoreGraphics
-import class UIKit.UIGraphicsImageRenderer
 
-typealias EditorReducer = Reducer<EditorState, EditorAction, Void>
+typealias EditorReducer = Reducer<EditorState, EditorAction, EditorEnvironment>
 
 let editorReducer = EditorReducer.combine(
   canvasReducer.optional().pullback(
@@ -15,7 +14,7 @@ let editorReducer = EditorReducer.combine(
     action: /EditorAction.menu,
     environment: { _ in () }
   ),
-  EditorReducer { state, action, _ in
+  EditorReducer { state, action, env in
     switch action {
     case .presentImagePicker(let present):
       state.isPresentingImagePicker = present
@@ -36,16 +35,11 @@ let editorReducer = EditorReducer.combine(
 
     case .exportImage:
       guard let canvas = state.canvas else { return .none }
-      let renderingBounds = CGRect(origin: .zero, size: canvas.size)
-      let renderer = UIGraphicsImageRenderer(bounds: renderingBounds)
-      let exportedImage = renderer.image { _ in
-        canvas.image.draw(in: canvas.frame)
-      }
+      let image = env.renderCanvas(canvas)
       // TODO: save to photo library
       // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-      // return .none
       return .merge(
-        .init(value: .loadImage(exportedImage)),
+        .init(value: .loadImage(image)),
         .init(value: .canvas(.scaleToFill))
       )
 

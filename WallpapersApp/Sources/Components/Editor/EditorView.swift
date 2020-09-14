@@ -65,7 +65,7 @@ struct EditorView_Previews: PreviewProvider {
     EditorView(store: Store(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: ()
+      environment: EditorEnvironment()
     ))
   }
 }

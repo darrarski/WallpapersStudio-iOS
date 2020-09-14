@@ -3,13 +3,15 @@ import XCTest
 import ComposableArchitecture
 
 final class MainReducerTests: XCTestCase {
-  var store: TestStore<MainState, MainState, MainAction, MainAction, Void>!
+  var store: TestStore<MainState, MainState, MainAction, MainAction, MainEnvironment>!
 
   override func setUp() {
     store = TestStore(
       initialState: MainState(),
       reducer: mainReducer,
-      environment: ()
+      environment: MainEnvironment(
+        renderCanvas: { _ in fatalError() }
+      )
     )
   }
 

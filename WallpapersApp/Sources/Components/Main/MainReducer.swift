@@ -1,12 +1,12 @@
 import ComposableArchitecture
 
-typealias MainReducer = Reducer<MainState, MainAction, Void>
+typealias MainReducer = Reducer<MainState, MainAction, MainEnvironment>
 
 let mainReducer = MainReducer.combine(
   editorReducer.pullback(
     state: \.editor,
     action: /MainAction.editor,
-    environment: { _ in () }
+    environment: \.editorEnv
   ),
   MainReducer { _, action, _ in
     switch action {

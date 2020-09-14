@@ -3,13 +3,15 @@ import XCTest
 import ComposableArchitecture
 
 final class EditorReducerTests: XCTestCase {
-  var store: TestStore<EditorState, EditorState, EditorAction, EditorAction, Void>!
+  var store: TestStore<EditorState, EditorState, EditorAction, EditorAction, EditorEnvironment>!
 
   override func setUp() {
     store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: ()
+      environment: EditorEnvironment(
+        renderCanvas: { _ in fatalError() }
+      )
     )
   }
 
@@ -71,6 +73,13 @@ final class EditorReducerTests: XCTestCase {
       .receive(.canvas(.scaleToFill)) {
         $0.canvas?.frame.origin = CGPoint(x: 0, y: -1)
       }
+    )
+  }
+
+  func testExportingImage() {
+    store.assert(
+      .send(.menu(.exportToLibrary)),
+      .receive(.exportImage)
     )
   }
 

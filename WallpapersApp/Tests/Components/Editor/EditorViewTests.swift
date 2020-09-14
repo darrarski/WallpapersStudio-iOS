@@ -9,7 +9,7 @@ final class EditorViewTests: XCTestCase {
     assertSnapshot(
       matching: EditorView(store: Store(
         initialState: EditorState(),
-        reducer: editorReducer,
+        reducer: .empty,
         environment: ()
       )),
       as: .image(

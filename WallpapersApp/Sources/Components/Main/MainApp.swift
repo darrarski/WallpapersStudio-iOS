@@ -6,7 +6,7 @@ struct MainApp: App {
   let store = Store<MainState, MainAction>(
     initialState: MainState(),
     reducer: mainReducer,
-    environment: ()
+    environment: MainEnvironment()
   )
 
   var body: some Scene {
