@@ -5,7 +5,7 @@ import ComposableArchitecture
 import SwiftUI
 
 final class MenuViewTests: XCTestCase {
-  func testSnapshotWithoutLoaded() {
+  func testSnapshotWithoutLoadedImage() {
     assertSnapshot(
       matching: snapshotView(
         MenuView(store: Store(
