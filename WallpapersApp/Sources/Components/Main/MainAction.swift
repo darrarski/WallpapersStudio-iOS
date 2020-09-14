@@ -1,3 +1,3 @@
-enum MainAction {
+enum MainAction: Equatable {
   case editor(EditorAction)
 }
