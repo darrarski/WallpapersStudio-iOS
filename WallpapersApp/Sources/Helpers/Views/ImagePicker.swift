@@ -30,7 +30,9 @@ extension ImagePicker {
       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
       if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-        picker.onImport(image)
+        DispatchQueue.main.async {
+          self.picker.onImport(image)
+        }
       }
       picker.presentationMode.wrappedValue.dismiss()
     }
