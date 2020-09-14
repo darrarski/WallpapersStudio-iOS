@@ -11,10 +11,12 @@ struct MainApp: App {
 
   var body: some Scene {
     WindowGroup {
-      EditorView(store: store.scope(
-        state: \.editor,
-        action: MainAction.editor
-      ))
+      if NSClassFromString("XCTestCase") == nil {
+        EditorView(store: store.scope(
+          state: \.editor,
+          action: MainAction.editor
+        ))
+      }
     }
   }
 }
