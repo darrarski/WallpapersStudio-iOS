@@ -27,6 +27,7 @@
 		315D89DB250FBC0200DFF6FC /* EditorReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89DA250FBC0200DFF6FC /* EditorReducerTests.swift */; };
 		315D89DE250FBD4000DFF6FC /* EditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89DC250FBD2700DFF6FC /* EditorViewTests.swift */; };
 		315D89E1250FBE5E00DFF6FC /* CanvasViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89E0250FBE5E00DFF6FC /* CanvasViewTests.swift */; };
+		315D89E3250FC06F00DFF6FC /* CanvasReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89E2250FC06F00DFF6FC /* CanvasReducerTests.swift */; };
 		317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */; };
 		317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB155250D05D600FEA20D /* CGRect+Center.swift */; };
 		317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */; };
@@ -81,6 +82,7 @@
 		315D89DA250FBC0200DFF6FC /* EditorReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorReducerTests.swift; sourceTree = "<group>"; };
 		315D89DC250FBD2700DFF6FC /* EditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewTests.swift; sourceTree = "<group>"; };
 		315D89E0250FBE5E00DFF6FC /* CanvasViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewTests.swift; sourceTree = "<group>"; };
+		315D89E2250FC06F00DFF6FC /* CanvasReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasReducerTests.swift; sourceTree = "<group>"; };
 		317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Rotated.swift"; sourceTree = "<group>"; };
 		317BB155250D05D600FEA20D /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
 		317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Scaled.swift"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		315D89DF250FBE4700DFF6FC /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				315D89E2250FC06F00DFF6FC /* CanvasReducerTests.swift */,
 				315D89E0250FBE5E00DFF6FC /* CanvasViewTests.swift */,
 			);
 			path = Canvas;
@@ -446,6 +449,7 @@
 				315D89DB250FBC0200DFF6FC /* EditorReducerTests.swift in Sources */,
 				315D89E1250FBE5E00DFF6FC /* CanvasViewTests.swift in Sources */,
 				315D89D2250FB60300DFF6FC /* MenuReducerTests.swift in Sources */,
+				315D89E3250FC06F00DFF6FC /* CanvasReducerTests.swift in Sources */,
 				315D89D4250FB61000DFF6FC /* MenuViewTests.swift in Sources */,
 				315D89D8250FBA6900DFF6FC /* MainReducerTests.swift in Sources */,
 				315D89DE250FBD4000DFF6FC /* EditorViewTests.swift in Sources */,
