@@ -38,10 +38,7 @@ let editorReducer = EditorReducer.combine(
       let image = env.renderCanvas(canvas)
       // TODO: save to photo library
       // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-      return .merge(
-        .init(value: .loadImage(image)),
-        .init(value: .canvas(.scaleToFill))
-      )
+      return .init(value: .loadImage(image))
 
     case .canvas(_):
       return .none

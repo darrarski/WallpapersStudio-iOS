@@ -78,7 +78,7 @@ final class EditorReducerTests: XCTestCase {
     )
   }
 
-  func testExportingImage() {
+  func testExportingImageWhenNoImageLoaded() {
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
@@ -88,6 +88,43 @@ final class EditorReducerTests: XCTestCase {
     store.assert(
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage)
+    )
+  }
+
+  func testExportingImage() {
+    var didRenderCanvas: [CanvasState] = []
+    let renderedCanvas: UIImage = image(color: .blue, size: CGSize(width: 4, height: 6))
+    let initialState = EditorState(
+      canvas: CanvasState(
+        size: CGSize(width: 4, height: 6),
+        image: image(color: .red, size: CGSize(width: 40, height: 60)),
+        frame: CGRect(
+          origin: CGPoint(x: -5, y: -10),
+          size: CGSize(width: 20, height: 20)
+        )
+      )
+    )
+    let store = TestStore(
+      initialState: initialState,
+      reducer: editorReducer,
+      environment: EditorEnvironment(
+        renderCanvas: { canvas -> UIImage in
+          didRenderCanvas.append(canvas)
+          return renderedCanvas
+        }
+      )
+    )
+
+    store.assert(
+      .send(.menu(.exportToLibrary)),
+      .receive(.exportImage),
+      .receive(.loadImage(renderedCanvas)) {
+        $0.canvas?.image = renderedCanvas
+        $0.canvas?.frame = CGRect(origin: .zero, size: renderedCanvas.size)
+        $0.menu.isImageLoaded = true
+      },
+      .receive(.canvas(.scaleToFill)),
+      .do { XCTAssertEqual(didRenderCanvas, [initialState.canvas!]) }
     )
   }
 
