@@ -23,7 +23,7 @@ final class EditorReducerTests: XCTestCase {
         $0.isPresentingImagePicker = true
       },
       .send(.presentImagePicker(false)) {
-        $0.isPresentingMenu = false
+        $0.isPresentingImagePicker = false
       }
     )
   }
