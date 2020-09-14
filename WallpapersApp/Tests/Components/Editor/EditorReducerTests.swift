@@ -3,23 +3,13 @@ import XCTest
 import ComposableArchitecture
 
 final class EditorReducerTests: XCTestCase {
-  var store: TestStore<EditorState, EditorState, EditorAction, EditorAction, EditorEnvironment>!
-
-  override func setUp() {
-    store = TestStore(
+  func testPresentImagePicker() {
+    let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment(
-        renderCanvas: { _ in fatalError() }
-      )
+      environment: EditorEnvironment()
     )
-  }
 
-  override func tearDown() {
-    store = nil
-  }
-
-  func testPresentImagePicker() {
     store.assert(
       .send(.menu(.importFromLibrary)),
       .receive(.presentImagePicker(true)) {
@@ -32,6 +22,12 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testToggleMenu() {
+    let store = TestStore(
+      initialState: EditorState(),
+      reducer: editorReducer,
+      environment: EditorEnvironment()
+    )
+
     store.assert(
       .send(.toggleMenu) {
         $0.isPresentingMenu.toggle()
@@ -43,6 +39,12 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testLoadImage() {
+    let store = TestStore(
+      initialState: EditorState(),
+      reducer: editorReducer,
+      environment: EditorEnvironment()
+    )
+
     let image1 = image(color: .red, size: CGSize(width: 6, height: 4))
     let image2 = image(color: .blue, size: CGSize(width: 3, height: 6))
 
@@ -77,6 +79,12 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testExportingImage() {
+    let store = TestStore(
+      initialState: EditorState(),
+      reducer: editorReducer,
+      environment: EditorEnvironment()
+    )
+
     store.assert(
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage)
