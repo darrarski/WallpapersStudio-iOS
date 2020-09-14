@@ -19,6 +19,7 @@
 		315D89AF250FAD7000DFF6FC /* MainState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AE250FAD7000DFF6FC /* MainState.swift */; };
 		315D89B1250FAE6100DFF6FC /* MainAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89B0250FAE6100DFF6FC /* MainAction.swift */; };
 		315D89B3250FAE6A00DFF6FC /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89B2250FAE6A00DFF6FC /* MainReducer.swift */; };
+		315D89BB250FB2D300DFF6FC /* WallpapersAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89BA250FB2D300DFF6FC /* WallpapersAppTests.swift */; };
 		317BB154250D05BC00FEA20D /* CGAffineTransform+Rotated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */; };
 		317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317BB155250D05D600FEA20D /* CGRect+Center.swift */; };
 		317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */; };
@@ -41,6 +42,16 @@
 		31D7D255250EFFD900BEC3EA /* CanvasViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D254250EFFD900BEC3EA /* CanvasViewState.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		315D89BD250FB2D300DFF6FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31BCE3A0250AC23300B8E259 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31BCE3A7250AC23300B8E259;
+			remoteInfo = WallpapersApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		311BCCEE250BF9C00084B100 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		311BCCF0250BFD710084B100 /* RoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRect.swift; sourceTree = "<group>"; };
@@ -54,6 +65,9 @@
 		315D89AE250FAD7000DFF6FC /* MainState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainState.swift; sourceTree = "<group>"; };
 		315D89B0250FAE6100DFF6FC /* MainAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAction.swift; sourceTree = "<group>"; };
 		315D89B2250FAE6A00DFF6FC /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
+		315D89B8250FB2D300DFF6FC /* WallpapersAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallpapersAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		315D89BA250FB2D300DFF6FC /* WallpapersAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersAppTests.swift; sourceTree = "<group>"; };
+		315D89BC250FB2D300DFF6FC /* InfoTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoTests.plist; sourceTree = "<group>"; };
 		317BB153250D05BC00FEA20D /* CGAffineTransform+Rotated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Rotated.swift"; sourceTree = "<group>"; };
 		317BB155250D05D600FEA20D /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
 		317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Scaled.swift"; sourceTree = "<group>"; };
@@ -78,6 +92,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		315D89B5250FB2D300DFF6FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		31BCE3A5250AC23300B8E259 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		315D89B9250FB2D300DFF6FC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				315D89BA250FB2D300DFF6FC /* WallpapersAppTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		31BCE39F250AC23300B8E259 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				31BCE3A8250AC23300B8E259 /* Wallpapers.app */,
+				315D89B8250FB2D300DFF6FC /* WallpapersAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +142,7 @@
 			children = (
 				31BE6151250AC6FF0032CE9D /* Resources */,
 				31BE6150250AC6F90032CE9D /* Sources */,
+				315D89B9250FB2D300DFF6FC /* Tests */,
 			);
 			path = WallpapersApp;
 			sourceTree = "<group>";
@@ -130,6 +161,7 @@
 			children = (
 				31BCE3AF250AC23500B8E259 /* Assets.xcassets */,
 				31BCE3B4250AC23500B8E259 /* Info.plist */,
+				315D89BC250FB2D300DFF6FC /* InfoTests.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -245,6 +277,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		315D89B7250FB2D300DFF6FC /* WallpapersAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 315D89BF250FB2D300DFF6FC /* Build configuration list for PBXNativeTarget "WallpapersAppTests" */;
+			buildPhases = (
+				315D89B4250FB2D300DFF6FC /* Sources */,
+				315D89B5250FB2D300DFF6FC /* Frameworks */,
+				315D89B6250FB2D300DFF6FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				315D89BE250FB2D300DFF6FC /* PBXTargetDependency */,
+			);
+			name = WallpapersAppTests;
+			productName = WallpapersAppTests;
+			productReference = 315D89B8250FB2D300DFF6FC /* WallpapersAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		31BCE3A7250AC23300B8E259 /* WallpapersApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31BCE3B7250AC23500B8E259 /* Build configuration list for PBXNativeTarget "WallpapersApp" */;
@@ -274,6 +324,10 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					315D89B7250FB2D300DFF6FC = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 31BCE3A7250AC23300B8E259;
+					};
 					31BCE3A7250AC23300B8E259 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -296,11 +350,19 @@
 			projectRoot = "";
 			targets = (
 				31BCE3A7250AC23300B8E259 /* WallpapersApp */,
+				315D89B7250FB2D300DFF6FC /* WallpapersAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		315D89B6250FB2D300DFF6FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		31BCE3A6250AC23300B8E259 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +374,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		315D89B4250FB2D300DFF6FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				315D89BB250FB2D300DFF6FC /* WallpapersAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		31BCE3A4250AC23300B8E259 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,7 +421,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		315D89BE250FB2D300DFF6FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31BCE3A7250AC23300B8E259 /* WallpapersApp */;
+			targetProxy = 315D89BD250FB2D300DFF6FC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		315D89C0250FB2D300DFF6FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P38XW29864;
+				INFOPLIST_FILE = WallpapersApp/Resources/InfoTests.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.darrarski.WallpapersAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wallpapers.app/Wallpapers";
+			};
+			name = Debug;
+		};
+		315D89C1250FB2D300DFF6FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P38XW29864;
+				INFOPLIST_FILE = WallpapersApp/Resources/InfoTests.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.darrarski.WallpapersAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wallpapers.app/Wallpapers";
+			};
+			name = Release;
+		};
 		31BCE3B5250AC23500B8E259 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -519,6 +637,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		315D89BF250FB2D300DFF6FC /* Build configuration list for PBXNativeTarget "WallpapersAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				315D89C0250FB2D300DFF6FC /* Debug */,
+				315D89C1250FB2D300DFF6FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		31BCE3A3250AC23300B8E259 /* Build configuration list for PBXProject "WallpapersApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
