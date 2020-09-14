@@ -1,3 +1,3 @@
-struct MenuState {
+struct MenuState: Equatable {
   var isImageLoaded = false
 }
