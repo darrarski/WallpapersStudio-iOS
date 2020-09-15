@@ -21,6 +21,7 @@ final class CanvasViewTests: XCTestCase {
       )),
       as: .image(
         drawHierarchyInKeyWindow: true,
+        precision: 0.99,
         layout: .fixed(width: 100, height: 100),
         traits: .init(userInterfaceStyle: .light)
       )
