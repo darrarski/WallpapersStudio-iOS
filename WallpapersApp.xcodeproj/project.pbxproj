@@ -19,7 +19,6 @@
 		315D89AF250FAD7000DFF6FC /* MainState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AE250FAD7000DFF6FC /* MainState.swift */; };
 		315D89B1250FAE6100DFF6FC /* MainAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89B0250FAE6100DFF6FC /* MainAction.swift */; };
 		315D89B3250FAE6A00DFF6FC /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89B2250FAE6A00DFF6FC /* MainReducer.swift */; };
-		315D89BB250FB2D300DFF6FC /* WallpapersAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89BA250FB2D300DFF6FC /* WallpapersAppTests.swift */; };
 		315D89C4250FB41300DFF6FC /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 315D89C3250FB41300DFF6FC /* SnapshotTesting */; };
 		315D89D2250FB60300DFF6FC /* MenuReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89D0250FB5FE00DFF6FC /* MenuReducerTests.swift */; };
 		315D89D4250FB61000DFF6FC /* MenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89D3250FB61000DFF6FC /* MenuViewTests.swift */; };
@@ -77,7 +76,6 @@
 		315D89B0250FAE6100DFF6FC /* MainAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAction.swift; sourceTree = "<group>"; };
 		315D89B2250FAE6A00DFF6FC /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
 		315D89B8250FB2D300DFF6FC /* WallpapersAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallpapersAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		315D89BA250FB2D300DFF6FC /* WallpapersAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpapersAppTests.swift; sourceTree = "<group>"; };
 		315D89BC250FB2D300DFF6FC /* InfoTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoTests.plist; sourceTree = "<group>"; };
 		315D89D0250FB5FE00DFF6FC /* MenuReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReducerTests.swift; sourceTree = "<group>"; };
 		315D89D3250FB61000DFF6FC /* MenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewTests.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				315D89C5250FB42600DFF6FC /* Components */,
-				315D89BA250FB2D300DFF6FC /* WallpapersAppTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -462,7 +459,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				315D89BB250FB2D300DFF6FC /* WallpapersAppTests.swift in Sources */,
 				315D89DB250FBC0200DFF6FC /* EditorReducerTests.swift in Sources */,
 				315D89E1250FBE5E00DFF6FC /* CanvasViewTests.swift in Sources */,
 				315D89D2250FB60300DFF6FC /* MenuReducerTests.swift in Sources */,
