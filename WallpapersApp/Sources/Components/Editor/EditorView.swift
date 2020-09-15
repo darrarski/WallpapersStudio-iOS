@@ -55,7 +55,7 @@ struct EditorView: View {
           })
         }
         .alert(
-          store.scope(state: EditorViewState.init(state:)).scope(state: \.alert),
+          store.scope(state: EditorViewState.init(state:)).scope(state: \.isPresentingAlert),
           dismiss: EditorAction.dismissAlert
         )
       }
