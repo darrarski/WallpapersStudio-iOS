@@ -31,7 +31,7 @@ let editorReducer = EditorReducer.combine(
         image: image,
         frame: CGRect(origin: .zero, size: image.size)
       )
-      state.menu.isImageLoaded = true
+      state.menu = MenuState(isImageLoaded: true)
       return .init(value: .canvas(.scaleToFill))
 
     case .exportImage:
@@ -64,6 +64,9 @@ let editorReducer = EditorReducer.combine(
       return .init(value: .exportImage)
 
     case .menu(.updateBlur(_)):
+      if let image = state.image, let bluredImage = env.blurImage(image, state.menu.blur * 32) {
+        state.canvas?.image = bluredImage
+      }
       return .none
     }
   }

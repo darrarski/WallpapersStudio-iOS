@@ -169,6 +169,40 @@ final class EditorReducerTests: XCTestCase {
     )
   }
 
+  func testMenuUpdateBlur() {
+    let loadedImage = image(color: .red, size: CGSize(width: 1, height: 1))
+    var didBlurImage: [(image: UIImage, radius: CGFloat)] = []
+    let blurredImage = image(color: .blue, size: CGSize(width: 1, height: 1))
+
+    let store = TestStore(
+      initialState: EditorState(
+        image: loadedImage,
+        canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
+      ),
+      reducer: editorReducer,
+      environment: EditorEnvironment(
+        renderCanvas: { _ in fatalError() },
+        savePhoto: { _ in fatalError() },
+        blurImage: { image, radius in
+          didBlurImage.append((image, radius))
+          return blurredImage
+        }
+      )
+    )
+
+    store.assert(
+      .send(.menu(.updateBlur(0.33))) {
+        $0.menu.blur = 0.33
+        $0.canvas!.image = blurredImage
+      },
+      .do {
+        XCTAssertEqual(didBlurImage.count, 1)
+        XCTAssertEqual(didBlurImage.first?.image, loadedImage)
+        XCTAssertEqual(didBlurImage.first?.radius, 0.33 * 32)
+      }
+    )
+  }
+
   private func image(color: UIColor, size: CGSize) -> UIImage {
     UIGraphicsImageRenderer(size: size).image { context in
       color.setFill()
