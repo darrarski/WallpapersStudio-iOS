@@ -1,3 +1,4 @@
+import Combine
 import ComposableArchitecture
 import CoreGraphics
 
@@ -54,6 +55,28 @@ let editorReducer = EditorReducer.combine(
       state.isPresentingAlert = nil
       return .none
 
+    case .applyFilters:
+      guard let image = state.image else { return .none }
+      struct EffectID: Hashable {}
+      return Deferred { [state] in
+        Future { fulfill in
+          var outputImage = image
+          let blurRadius = state.menu.blur * 32
+          if blurRadius > 0, let blurredImage = env.blurImage(outputImage, blurRadius) {
+            outputImage = blurredImage
+          }
+          fulfill(.success(.didApplyFilters(outputImage)))
+        }
+      }
+      .subscribe(on: env.filterQueue)
+      .receive(on: env.mainQueue)
+      .eraseToEffect()
+      .cancellable(id: EffectID(), cancelInFlight: true)
+
+    case .didApplyFilters(let image):
+      state.canvas?.image = image
+      return .none
+
     case .canvas(_):
       return .none
 
@@ -64,10 +87,7 @@ let editorReducer = EditorReducer.combine(
       return .init(value: .exportImage)
 
     case .menu(.updateBlur(_)):
-      if let image = state.image, let bluredImage = env.blurImage(image, state.menu.blur * 32) {
-        state.canvas?.image = bluredImage
-      }
-      return .none
+      return .init(value: .applyFilters)
     }
   }
 )

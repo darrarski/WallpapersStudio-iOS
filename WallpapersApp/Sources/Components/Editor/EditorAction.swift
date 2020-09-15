@@ -9,6 +9,8 @@ enum EditorAction: Equatable {
   case didExportImage
   case didFailExportingImage
   case dismissAlert
+  case applyFilters
+  case didApplyFilters(UIImage)
   case canvas(CanvasAction)
   case menu(MenuAction)
 }
