@@ -51,6 +51,7 @@ final class EditorReducerTests: XCTestCase {
 
     store.assert(
       .send(.loadImage(image1)) {
+        $0.image = image1
         $0.canvas = CanvasState(
           size: .zero,
           image: image1,
@@ -69,6 +70,7 @@ final class EditorReducerTests: XCTestCase {
         $0.canvas?.frame.size = image1.size
       },
       .send(.loadImage(image2)) {
+        $0.image = image2
         $0.canvas?.image = image2
         $0.canvas?.frame.origin = .zero
         $0.canvas?.frame.size = image2.size
