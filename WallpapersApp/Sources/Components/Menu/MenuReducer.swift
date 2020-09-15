@@ -9,5 +9,9 @@ let menuReducer = MenuReducer { state, action, _ in
 
   case .exportToLibrary:
     return .none
+
+  case .updateBlur(let blur):
+    state.blur = max(0, min(1, blur))
+    return .none
   }
 }

@@ -61,6 +61,9 @@ let editorReducer = EditorReducer.combine(
 
     case .menu(.exportToLibrary):
       return .init(value: .exportImage)
+
+    case .menu(.updateBlur(_)):
+      return .none
     }
   }
 )

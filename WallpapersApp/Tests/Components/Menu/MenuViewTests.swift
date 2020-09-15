@@ -9,9 +9,7 @@ final class MenuViewTests: XCTestCase {
     assertSnapshot(
       matching: snapshotView(
         MenuView(store: Store(
-          initialState: MenuState(
-            isImageLoaded: false
-          ),
+          initialState: MenuState(),
           reducer: .empty,
           environment: ()
         ))
@@ -29,7 +27,8 @@ final class MenuViewTests: XCTestCase {
       matching: snapshotView(
         MenuView(store: Store(
           initialState: MenuState(
-            isImageLoaded: true
+            isImageLoaded: true,
+            blur: 0.33
           ),
           reducer: .empty,
           environment: ()
