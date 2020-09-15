@@ -6,4 +6,12 @@ struct EditorState: Equatable {
   var menu = MenuState()
   var isPresentingImagePicker = false
   var isPresentingMenu = true
+  var isPresentingAlert: Alert?
+}
+
+extension EditorState {
+  enum Alert: Equatable {
+    case exportSuccess
+    case exportFailure
+  }
 }

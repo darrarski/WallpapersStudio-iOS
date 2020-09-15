@@ -130,8 +130,13 @@ final class EditorReducerTests: XCTestCase {
         XCTAssertEqual(didSavePhoto, [renderedCanvas])
         savePhotoSubject.send(())
       },
-      .receive(.didExportImage),
-      .do { savePhotoSubject.send(completion: .finished) }
+      .receive(.didExportImage) {
+        $0.isPresentingAlert = .exportSuccess
+      },
+      .do { savePhotoSubject.send(completion: .finished) },
+      .send(.dismissAlert) {
+        $0.isPresentingAlert = nil
+      }
     )
   }
 
@@ -153,7 +158,12 @@ final class EditorReducerTests: XCTestCase {
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
       .do { savePhotoSubject.send(completion: .failure(error)) },
-      .receive(.didFailExportingImage)
+      .receive(.didFailExportingImage) {
+        $0.isPresentingAlert = .exportFailure
+      },
+      .send(.dismissAlert) {
+        $0.isPresentingAlert = nil
+      }
     )
   }
 

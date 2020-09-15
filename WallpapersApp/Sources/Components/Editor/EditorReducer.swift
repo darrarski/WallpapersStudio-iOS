@@ -42,9 +42,15 @@ let editorReducer = EditorReducer.combine(
         .eraseToEffect()
 
     case .didExportImage:
+      state.isPresentingAlert = .exportSuccess
       return .none
 
     case .didFailExportingImage:
+      state.isPresentingAlert = .exportFailure
+      return .none
+
+    case .dismissAlert:
+      state.isPresentingAlert = nil
       return .none
 
     case .canvas(_):

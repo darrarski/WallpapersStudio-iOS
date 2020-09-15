@@ -8,6 +8,7 @@ enum EditorAction: Equatable {
   case exportImage
   case didExportImage
   case didFailExportingImage
+  case dismissAlert
   case canvas(CanvasAction)
   case menu(MenuAction)
 }

@@ -54,6 +54,10 @@ struct EditorView: View {
             viewStore.send(.loadImage(image))
           })
         }
+        .alert(
+          store.scope(state: EditorViewState.init(state:)).scope(state: \.alert),
+          dismiss: EditorAction.dismissAlert
+        )
       }
     }
   }
