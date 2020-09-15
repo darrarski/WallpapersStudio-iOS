@@ -50,6 +50,7 @@
 		31D7D251250EF75400BEC3EA /* CanvasReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D250250EF75400BEC3EA /* CanvasReducer.swift */; };
 		31D7D253250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D252250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift */; };
 		31D7D255250EFFD900BEC3EA /* CanvasViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D254250EFFD900BEC3EA /* CanvasViewState.swift */; };
+		31FFD20B25102F3000C2A010 /* PhotoLibraryWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FFD20A25102F3000C2A010 /* PhotoLibraryWriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		31D7D250250EF75400BEC3EA /* CanvasReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasReducer.swift; sourceTree = "<group>"; };
 		31D7D252250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasSizePreferenceKey.swift; sourceTree = "<group>"; };
 		31D7D254250EFFD900BEC3EA /* CanvasViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewState.swift; sourceTree = "<group>"; };
+		31FFD20A25102F3000C2A010 /* PhotoLibraryWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryWriter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				31BCD13A25102395007E33B4 /* CanvasRenderer.swift */,
+				31FFD20A25102F3000C2A010 /* PhotoLibraryWriter.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				31BCD13B25102395007E33B4 /* CanvasRenderer.swift in Sources */,
 				314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */,
 				317BB156250D05D600FEA20D /* CGRect+Center.swift in Sources */,
+				31FFD20B25102F3000C2A010 /* PhotoLibraryWriter.swift in Sources */,
 				315D89A9250F88ED00DFF6FC /* MenuAction.swift in Sources */,
 				31D7D239250EB63B00BEC3EA /* EditorState.swift in Sources */,
 			);

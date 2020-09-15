@@ -36,9 +36,16 @@ let editorReducer = EditorReducer.combine(
     case .exportImage:
       guard let canvas = state.canvas else { return .none }
       let image = env.renderCanvas(canvas)
-      // TODO: save to photo library
-      // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-      return .init(value: .loadImage(image))
+      return env.savePhoto(image)
+        .map { _ in EditorAction.didExportImage }
+        .replaceError(with: EditorAction.didFailExportingImage)
+        .eraseToEffect()
+
+    case .didExportImage:
+      return .none
+
+    case .didFailExportingImage:
+      return .none
 
     case .canvas(_):
       return .none

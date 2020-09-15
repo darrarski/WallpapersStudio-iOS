@@ -1,5 +1,6 @@
 import XCTest
 @testable import WallpapersApp
+import Combine
 import ComposableArchitecture
 
 final class EditorReducerTests: XCTestCase {
@@ -94,6 +95,8 @@ final class EditorReducerTests: XCTestCase {
   func testExportingImage() {
     var didRenderCanvas: [CanvasState] = []
     let renderedCanvas: UIImage = image(color: .blue, size: CGSize(width: 4, height: 6))
+    var didSavePhoto: [UIImage] = []
+    let savePhotoSubject = PassthroughSubject<Void, Error>()
     let initialState = EditorState(
       canvas: CanvasState(
         size: CGSize(width: 4, height: 6),
@@ -111,6 +114,10 @@ final class EditorReducerTests: XCTestCase {
         renderCanvas: { canvas -> UIImage in
           didRenderCanvas.append(canvas)
           return renderedCanvas
+        },
+        savePhoto: { image in
+          didSavePhoto.append(image)
+          return savePhotoSubject.eraseToAnyPublisher()
         }
       )
     )
@@ -118,13 +125,35 @@ final class EditorReducerTests: XCTestCase {
     store.assert(
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
-      .receive(.loadImage(renderedCanvas)) {
-        $0.canvas?.image = renderedCanvas
-        $0.canvas?.frame = CGRect(origin: .zero, size: renderedCanvas.size)
-        $0.menu.isImageLoaded = true
+      .do {
+        XCTAssertEqual(didRenderCanvas, [initialState.canvas!])
+        XCTAssertEqual(didSavePhoto, [renderedCanvas])
+        savePhotoSubject.send(())
       },
-      .receive(.canvas(.scaleToFill)),
-      .do { XCTAssertEqual(didRenderCanvas, [initialState.canvas!]) }
+      .receive(.didExportImage),
+      .do { savePhotoSubject.send(completion: .finished) }
+    )
+  }
+
+  func testExportingImageFailure() {
+    let savePhotoSubject = PassthroughSubject<Void, Error>()
+    let error = NSError(domain: "test", code: 1234, userInfo: nil)
+    let store = TestStore(
+      initialState: EditorState(
+        canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
+      ),
+      reducer: editorReducer,
+      environment: EditorEnvironment(
+        renderCanvas: { _ in UIImage() },
+        savePhoto: { _ in savePhotoSubject.eraseToAnyPublisher() }
+      )
+    )
+
+    store.assert(
+      .send(.menu(.exportToLibrary)),
+      .receive(.exportImage),
+      .do { savePhotoSubject.send(completion: .failure(error)) },
+      .receive(.didFailExportingImage)
     )
   }
 
