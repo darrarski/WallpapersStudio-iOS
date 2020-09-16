@@ -5,6 +5,7 @@ struct CanvasViewState: Equatable {
   let image: UIImage
   let imageFrame: CGRect
   let blurRadius: CGFloat
+  let saturationAmount: Double
 
   init(state: CanvasState) {
     self.image = state.image
@@ -16,5 +17,6 @@ struct CanvasViewState: Equatable {
       size: state.frame.size
     )
     self.blurRadius = state.blur * state.size.width / 10
+    self.saturationAmount = Double(state.saturation)
   }
 }

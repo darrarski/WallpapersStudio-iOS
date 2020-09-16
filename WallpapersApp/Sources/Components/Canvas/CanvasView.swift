@@ -12,6 +12,7 @@ struct CanvasView: View {
           Color(.systemBackground)
           Image(uiImage: viewStore.image)
             .resizable()
+            .saturation(viewStore.saturationAmount)
             .blur(radius: viewStore.blurRadius, opaque: true)
             .frame(size: viewStore.imageFrame.size)
             .padding(imageBorderWidth)

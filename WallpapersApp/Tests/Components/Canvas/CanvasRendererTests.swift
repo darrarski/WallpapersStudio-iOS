@@ -12,7 +12,8 @@ final class CanvasRendererTests: XCTestCase {
         origin: CGPoint(x: -image.size.width / 4, y: -image.size.width / 4),
         size: image.size
       ),
-      blur: 0.2
+      blur: 0.2,
+      saturation: 1.5
     )
 
     assertSnapshot(
