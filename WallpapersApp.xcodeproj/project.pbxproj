@@ -187,7 +187,6 @@
 		31BCD1392510237E007E33B4 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				31BCD13A25102395007E33B4 /* CanvasRenderer.swift */,
 				31FFD20A25102F3000C2A010 /* PhotoLibraryWriter.swift */,
 			);
 			path = Image;
@@ -246,6 +245,7 @@
 			children = (
 				31D7D24E250EF74100BEC3EA /* CanvasAction.swift */,
 				31D7D250250EF75400BEC3EA /* CanvasReducer.swift */,
+				31BCD13A25102395007E33B4 /* CanvasRenderer.swift */,
 				31D7D252250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift */,
 				31D7D24C250EF6D700BEC3EA /* CanvasState.swift */,
 				31D7D245250ED72E00BEC3EA /* CanvasView.swift */,
