@@ -63,7 +63,7 @@ struct MenuView_Previews: PreviewProvider {
         environment: ()
       ))
     }
-    .background(Color.blue.edgesIgnoringSafeArea(.all))
+    .background(Color.accentColor.edgesIgnoringSafeArea(.all))
   }
 }
 #endif

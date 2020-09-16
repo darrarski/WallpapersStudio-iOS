@@ -5,18 +5,9 @@ import ComposableArchitecture
 import SwiftUI
 
 final class MenuViewTests: XCTestCase {
-  func testSnapshotWithoutLoadedImage() {
+  func testPreviewSnapshot() {
     assertSnapshot(
-      matching: snapshotView(
-        MenuView(store: Store(
-          initialState: MenuState(
-            isImageLoaded: false,
-            blur: 0
-          ),
-          reducer: .empty,
-          environment: ()
-        ))
-      ),
+      matching: snapshotView(MenuView_Previews.previews),
       as: .image(
         drawHierarchyInKeyWindow: true,
         layout: .device(config: .iPhoneXr),
