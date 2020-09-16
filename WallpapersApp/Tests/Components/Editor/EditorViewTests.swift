@@ -20,7 +20,6 @@ final class EditorViewTests: XCTestCase {
     assertSnapshot(
       matching: EditorView(store: Store(
         initialState: EditorState(
-          image: UIImage(),
           canvas: CanvasState(
             size: .zero,
             image: UIImage(),

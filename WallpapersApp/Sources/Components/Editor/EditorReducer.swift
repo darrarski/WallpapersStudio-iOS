@@ -26,7 +26,6 @@ let editorReducer = EditorReducer.combine(
       return .none
 
     case .loadImage(let image):
-      state.image = image
       state.canvas = CanvasState(
         size: state.canvas?.size ?? .zero,
         image: image,

@@ -2,7 +2,6 @@ import class UIKit.UIImage
 import struct CoreGraphics.CGRect
 
 struct EditorState: Equatable {
-  var image: UIImage?
   var canvas: CanvasState?
   var isPresentingImagePicker = false
   var isPresentingMenu = true
@@ -20,7 +19,7 @@ extension EditorState {
   var menu: MenuState {
     get {
       MenuState(
-        isImageLoaded: image != nil,
+        isImageLoaded: canvas != nil,
         blur: canvas?.blur ?? 0,
         saturation: canvas?.saturation ?? 1
       )
