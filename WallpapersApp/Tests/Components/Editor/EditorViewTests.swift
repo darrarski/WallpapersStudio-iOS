@@ -36,4 +36,20 @@ final class EditorViewTests: XCTestCase {
       )
     )
   }
+
+  func testExportSuccessAlertViewState() {
+    let state = EditorState(isPresentingAlert: .exportSuccess)
+    let viewState = EditorViewState(state: state)
+    let alertState = viewState.isPresentingAlert
+
+    XCTAssertEqual(alertState, AlertState.exportSuccess)
+  }
+
+  func testExportFailureAlertViewState() {
+    let state = EditorState(isPresentingAlert: .exportFailure)
+    let viewState = EditorViewState(state: state)
+    let alertState = viewState.isPresentingAlert
+
+    XCTAssertEqual(alertState, AlertState.exportFailure)
+  }
 }

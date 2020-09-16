@@ -18,17 +18,29 @@ extension Optional where Wrapped == AlertState<EditorAction> {
   static func state(for alert: EditorState.Alert?) -> Self {
     switch alert {
     case .exportSuccess:
-      return AlertState(
-        title: "Wallpaper exported",
-        message: "Cropped image exported to Photo Library"
-      )
+      return .exportSuccess
+
     case .exportFailure:
-      return AlertState(
-        title: "Error occured",
-        message: "Unable to export wallpaper to Photo Library"
-      )
+      return .exportFailure
+
     case .none:
       return nil
     }
+  }
+}
+
+extension AlertState {
+  static var exportSuccess: AlertState {
+    AlertState(
+      title: "Wallpaper exported",
+      message: "Cropped image exported to Photo Library"
+    )
+  }
+
+  static var exportFailure: AlertState {
+    AlertState(
+      title: "Error occured",
+      message: "Unable to export wallpaper to Photo Library"
+    )
   }
 }
