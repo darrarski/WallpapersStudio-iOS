@@ -2,7 +2,7 @@
 
 ![Swift v5.3](https://img.shields.io/badge/swift-v5.3-orange.svg)
 ![platform iOS 14](https://img.shields.io/badge/platform-iOS%2014-blue.svg)
-![test coverage 75%](https://img.shields.io/badge/test%20coverage-75%25-green.svg)
+![test coverage 83%](https://img.shields.io/badge/test%20coverage-83%25-green.svg)
 
 ## 📝 Description
 
