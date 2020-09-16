@@ -6,32 +6,70 @@ import SwiftUI
 
 final class CanvasViewTests: XCTestCase {
   func testSnapshotWithImage() {
+    let state = CanvasState(
+      size: CGSize(width: 500, height: 500),
+      image: image(size: CGSize(width: 80, height: 80)),
+      frame: CGRect(
+        origin: CGPoint(x: 75, y: 75),
+        size: CGSize(width: 80, height: 80)
+      )
+    )
+
     assertSnapshot(
       matching: CanvasView(store: Store(
-        initialState: CanvasState(
-          size: CGSize(width: 100, height: 100),
-          image: image(color: .red, size: CGSize(width: 20, height: 20)),
-          frame: CGRect(
-            origin: CGPoint(x: 15, y: 15),
-            size: CGSize(width: 20, height: 20)
-          )
-        ),
+        initialState: state,
         reducer: .empty,
         environment: ()
       )),
       as: .image(
         drawHierarchyInKeyWindow: true,
         precision: 0.99,
-        layout: .fixed(width: 100, height: 100),
+        layout: .fixed(width: state.size.width, height: state.size.height),
         traits: .init(userInterfaceStyle: .light)
       )
     )
   }
 
-  private func image(color: UIColor, size: CGSize) -> UIImage {
+  func testSnaphotWithBlurredImage() {
+    let state = CanvasState(
+      size: CGSize(width: 500, height: 500),
+      image: image(size: CGSize(width: 80, height: 80)),
+      frame: CGRect(
+        origin: CGPoint(x: 75, y: 75),
+        size: CGSize(width: 80, height: 80)
+      ),
+      blur: 1
+    )
+
+    assertSnapshot(
+      matching: CanvasView(store: Store(
+        initialState: state,
+        reducer: .empty,
+        environment: ()
+      )),
+      as: .image(
+        drawHierarchyInKeyWindow: true,
+        precision: 0.99,
+        layout: .fixed(width: state.size.width, height: state.size.height),
+        traits: .init(userInterfaceStyle: .light)
+      )
+    )
+  }
+
+  private func image(size: CGSize) -> UIImage {
     UIGraphicsImageRenderer(size: size).image { context in
-      color.setFill()
-      context.fill(CGRect(origin: .zero, size: size))
+      let halfSize = CGSize(width: size.width / 2, height: size.height / 2)
+      let rectangles: [(color: UIColor, frame: CGRect)] = [
+        (.red, CGRect(origin: .zero, size: halfSize)),
+        (.green, CGRect(origin: CGPoint(x: size.width / 2, y: 0), size: halfSize)),
+        (.blue, CGRect(origin: CGPoint(x: 0, y: size.height / 2), size: halfSize)),
+        (.yellow, CGRect(origin: CGPoint(x: size.width / 2, y: size.height / 2), size: halfSize)),
+        (.black, CGRect(origin: CGPoint(x: size.width / 4, y: size.height / 4), size: halfSize))
+      ]
+      rectangles.forEach { rectangle in
+        rectangle.color.setFill()
+        context.fill(rectangle.frame)
+      }
     }
   }
 }
