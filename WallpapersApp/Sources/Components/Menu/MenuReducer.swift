@@ -17,5 +17,9 @@ let menuReducer = MenuReducer { state, action, _ in
   case .updateSaturation(let value):
     state.saturation = value
     return .none
+
+  case .updateHue(let value):
+    state.hue = value
+    return .none
   }
 }

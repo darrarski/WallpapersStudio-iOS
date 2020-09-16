@@ -82,6 +82,32 @@ final class CanvasViewTests: XCTestCase {
     )
   }
 
+  func testSnaphotWithRotatedHueOfImage() {
+    let state = CanvasState(
+      size: CGSize(width: 500, height: 500),
+      image: image(size: CGSize(width: 80, height: 80)),
+      frame: CGRect(
+        origin: CGPoint(x: 75, y: 75),
+        size: CGSize(width: 80, height: 80)
+      ),
+      hue: 180
+    )
+
+    assertSnapshot(
+      matching: CanvasView(store: Store(
+        initialState: state,
+        reducer: .empty,
+        environment: ()
+      )),
+      as: .image(
+        drawHierarchyInKeyWindow: true,
+        precision: 0.99,
+        layout: .fixed(width: state.size.width, height: state.size.height),
+        traits: .init(userInterfaceStyle: .light)
+      )
+    )
+  }
+
   private func image(size: CGSize) -> UIImage {
     UIGraphicsImageRenderer(size: size).image { context in
       let halfSize = CGSize(width: size.width / 2, height: size.height / 2)

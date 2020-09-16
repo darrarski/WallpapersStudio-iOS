@@ -179,6 +179,9 @@ final class EditorReducerTests: XCTestCase {
       },
       .send(.menu(.updateSaturation(2))) {
         $0.canvas?.saturation = 2
+      },
+      .send(.menu(.updateHue(120))) {
+        $0.canvas?.hue = 120
       }
     )
   }

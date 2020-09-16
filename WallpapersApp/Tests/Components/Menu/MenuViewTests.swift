@@ -23,7 +23,8 @@ final class MenuViewTests: XCTestCase {
           initialState: MenuState(
             isImageLoaded: true,
             blur: 0.33,
-            saturation: 1.25
+            saturation: 1.25,
+            hue: 120
           ),
           reducer: .empty,
           environment: ()

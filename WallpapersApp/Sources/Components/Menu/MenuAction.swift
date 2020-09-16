@@ -5,4 +5,5 @@ enum MenuAction: Equatable {
   case exportToLibrary
   case updateBlur(CGFloat)
   case updateSaturation(CGFloat)
+  case updateHue(CGFloat)
 }

@@ -13,7 +13,8 @@ final class CanvasRendererTests: XCTestCase {
         size: image.size
       ),
       blur: 0.2,
-      saturation: 1.5
+      saturation: 1.5,
+      hue: 60
     )
 
     assertSnapshot(

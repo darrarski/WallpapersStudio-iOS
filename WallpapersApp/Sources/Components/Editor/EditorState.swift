@@ -21,12 +21,14 @@ extension EditorState {
       MenuState(
         isImageLoaded: canvas != nil,
         blur: canvas?.blur ?? 0,
-        saturation: canvas?.saturation ?? 1
+        saturation: canvas?.saturation ?? 1,
+        hue: canvas?.hue ?? 0
       )
     }
     set {
       canvas?.blur = newValue.blur
       canvas?.saturation = newValue.saturation
+      canvas?.hue = newValue.hue
     }
   }
 }

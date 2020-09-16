@@ -43,6 +43,13 @@ struct MenuView: View {
             value: viewStore.binding(get: \.saturation.value, send: MenuAction.updateSaturation),
             range: viewStore.saturation.range
           )
+          FilterSlider(
+            icon: "triangle.righthalf.fill",
+            title: "Hue",
+            valueString: viewStore.hue.text,
+            value: viewStore.binding(get: \.hue.value, send: MenuAction.updateHue),
+            range: viewStore.hue.range
+          )
         }
         .disabled(viewStore.isFilteringDisabled)
         .opacity(viewStore.isFilteringDisabled ? 0.5 : 1)
@@ -72,7 +79,8 @@ struct MenuView_Previews: PreviewProvider {
         initialState: MenuState(
           isImageLoaded: false,
           blur: 0,
-          saturation: 1
+          saturation: 1,
+          hue: 0
         ),
         reducer: menuReducer,
         environment: ()

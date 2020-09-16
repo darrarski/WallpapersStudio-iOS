@@ -10,7 +10,8 @@ final class MenuReducerTests: XCTestCase {
       initialState: MenuState(
         isImageLoaded: false,
         blur: 0,
-        saturation: 1
+        saturation: 1,
+        hue: 0
       ),
       reducer: menuReducer,
       environment: ()
@@ -40,6 +41,9 @@ final class MenuReducerTests: XCTestCase {
       },
       .send(.updateSaturation(1.5)) {
         $0.saturation = 1.5
+      },
+      .send(.updateHue(180)) {
+        $0.hue = 180
       }
     )
   }
