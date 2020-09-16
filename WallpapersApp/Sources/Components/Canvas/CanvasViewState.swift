@@ -15,6 +15,6 @@ struct CanvasViewState: Equatable {
       ),
       size: state.frame.size
     )
-    self.blurRadius = state.blur * max(state.image.size.width, state.image.size.height) / 100
+    self.blurRadius = state.blur * state.size.width / 10
   }
 }

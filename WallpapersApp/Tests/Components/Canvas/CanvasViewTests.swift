@@ -38,7 +38,7 @@ final class CanvasViewTests: XCTestCase {
         origin: CGPoint(x: 75, y: 75),
         size: CGSize(width: 80, height: 80)
       ),
-      blur: 1
+      blur: 0.1
     )
 
     assertSnapshot(
