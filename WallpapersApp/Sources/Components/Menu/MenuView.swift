@@ -21,17 +21,17 @@ struct MenuView: View {
           }
           .padding()
         }
-        .disabled(viewStore.canExportToLibrary == false)
+        .disabled(viewStore.isExportDisabled)
         VStack {
           FilterSlider(
             icon: "drop",
             title: "Blur",
-            valueString: viewStore.blurString,
-            value: viewStore.binding(get: \.blurValue, send: MenuAction.updateBlur),
-            range: 0...1
+            valueString: viewStore.blur.text,
+            value: viewStore.binding(get: \.blur.value, send: MenuAction.updateBlur),
+            range: viewStore.blur.range
           )
         }
-        .disabled(viewStore.canExportToLibrary == false)
+        .disabled(viewStore.isFilteringDisabled)
         .padding()
       }
       .padding()
