@@ -23,19 +23,18 @@ struct MenuView: View {
         }
         .disabled(viewStore.canExportToLibrary == false)
         VStack {
-          HStack(alignment: .firstTextBaseline) {
-            Image(systemName: "drop")
-            Text("Blur image")
-            Spacer()
-            Text("\(viewStore.blurTextValue) %")
-          }
-          Slider(value: viewStore.binding(get: \.blurValue, send: MenuAction.updateBlur))
-            .disabled(viewStore.canExportToLibrary == false)
+          FilterSlider(
+            icon: "drop",
+            title: "Blur",
+            valueString: "\(viewStore.blurTextValue) %",
+            value: viewStore.binding(get: \.blurValue, send: MenuAction.updateBlur),
+            range: 0...1
+          )
         }
+        .disabled(viewStore.canExportToLibrary == false)
         .padding()
       }
       .padding()
-      .frame(maxWidth: .infinity)
       .background(
         VisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
           .clipShape(
