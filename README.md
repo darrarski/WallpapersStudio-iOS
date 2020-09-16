@@ -2,7 +2,7 @@
 
 ![Swift v5.3](https://img.shields.io/badge/swift-v5.3-orange.svg)
 ![platform iOS 14](https://img.shields.io/badge/platform-iOS%2014-blue.svg)
-![test coverage 88%](https://img.shields.io/badge/test%20coverage-88%25-green.svg)
+![test coverage 89%](https://img.shields.io/badge/test%20coverage-89%25-green.svg)
 
 ## 📝 Description
 
@@ -10,7 +10,7 @@ This iOS application allows you to easily create wallpaper for your phone from t
 
 1. Import image from Photo Library
 2. Adjust position and scale by dragging and pinching the image
-3. Apply blur and adjust saturation using sliders
+3. Apply blur and adjust saturation and hue rotation using sliders
 4. Export cropped wallpaper image to Photo Library
 
 ## 🛠 Tech stack
