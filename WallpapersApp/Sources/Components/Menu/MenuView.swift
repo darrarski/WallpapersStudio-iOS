@@ -26,7 +26,7 @@ struct MenuView: View {
           FilterSlider(
             icon: "drop",
             title: "Blur",
-            valueString: "\(viewStore.blurTextValue) %",
+            valueString: viewStore.blurString,
             value: viewStore.binding(get: \.blurValue, send: MenuAction.updateBlur),
             range: 0...1
           )
