@@ -6,4 +6,5 @@ struct CanvasState: Equatable {
   var image: UIImage
   var frame: CGRect
   var blur: CGFloat = 0
+  var saturation: CGFloat = 1
 }

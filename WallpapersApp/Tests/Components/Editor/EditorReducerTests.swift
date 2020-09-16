@@ -166,7 +166,7 @@ final class EditorReducerTests: XCTestCase {
     )
   }
 
-  func testMenuUpdateBlur() {
+  func testMenuUpdateFilters() {
     let store = TestStore(
       initialState: EditorState(
         canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
@@ -178,6 +178,9 @@ final class EditorReducerTests: XCTestCase {
     store.assert(
       .send(.menu(.updateBlur(0.66))) {
         $0.canvas?.blur = 0.66
+      },
+      .send(.menu(.updateSaturation(2))) {
+        $0.canvas?.saturation = 2
       }
     )
   }

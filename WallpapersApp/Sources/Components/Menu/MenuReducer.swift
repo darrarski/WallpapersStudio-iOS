@@ -10,8 +10,12 @@ let menuReducer = MenuReducer { state, action, _ in
   case .exportToLibrary:
     return .none
 
-  case .updateBlur(let blur):
-    state.blur = max(0, min(1, blur))
+  case .updateBlur(let value):
+    state.blur = value
+    return .none
+
+  case .updateSaturation(let value):
+    state.saturation = value
     return .none
   }
 }

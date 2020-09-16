@@ -18,7 +18,16 @@ extension EditorState {
 
 extension EditorState {
   var menu: MenuState {
-    get { MenuState(isImageLoaded: image != nil, blur: canvas?.blur ?? 0) }
-    set { canvas?.blur = newValue.blur }
+    get {
+      MenuState(
+        isImageLoaded: image != nil,
+        blur: canvas?.blur ?? 0,
+        saturation: canvas?.saturation ?? 1
+      )
+    }
+    set {
+      canvas?.blur = newValue.blur
+      canvas?.saturation = newValue.saturation
+    }
   }
 }

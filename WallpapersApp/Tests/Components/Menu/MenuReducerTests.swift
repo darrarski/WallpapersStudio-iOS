@@ -9,7 +9,8 @@ final class MenuReducerTests: XCTestCase {
     store = TestStore(
       initialState: MenuState(
         isImageLoaded: false,
-        blur: 0
+        blur: 0,
+        saturation: 1
       ),
       reducer: menuReducer,
       environment: ()
@@ -32,22 +33,13 @@ final class MenuReducerTests: XCTestCase {
     )
   }
 
-  func testUpdateBlur() {
+  func testUpdateFilters() {
     store.assert(
       .send(.updateBlur(0.33)) {
         $0.blur = 0.33
       },
-      .send(.updateBlur(0)) {
-        $0.blur = 0
-      },
-      .send(.updateBlur(1)) {
-        $0.blur = 1
-      },
-      .send(.updateBlur(-0.1)) {
-        $0.blur = 0
-      },
-      .send(.updateBlur(1.1)) {
-        $0.blur = 1
+      .send(.updateSaturation(1.5)) {
+        $0.saturation = 1.5
       }
     )
   }

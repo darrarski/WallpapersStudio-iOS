@@ -4,6 +4,7 @@ struct MenuViewState: Equatable {
   let isExportDisabled: Bool
   let isFilteringDisabled: Bool
   let blur: SliderState
+  let saturation: SliderState
 
   init(state: MenuState) {
     isExportDisabled = state.isImageLoaded == false
@@ -12,6 +13,11 @@ struct MenuViewState: Equatable {
       range: 0...1,
       value: state.blur,
       text: String(format: "%.f %%", state.blur * 100)
+    )
+    saturation = SliderState(
+      range: 0...2,
+      value: state.saturation,
+      text: String(format: "%.f %%", state.saturation * 100)
     )
   }
 }

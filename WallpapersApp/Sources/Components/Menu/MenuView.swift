@@ -30,6 +30,13 @@ struct MenuView: View {
             value: viewStore.binding(get: \.blur.value, send: MenuAction.updateBlur),
             range: viewStore.blur.range
           )
+          FilterSlider(
+            icon: "circle.righthalf.fill",
+            title: "Saturation",
+            valueString: viewStore.saturation.text,
+            value: viewStore.binding(get: \.saturation.value, send: MenuAction.updateSaturation),
+            range: viewStore.saturation.range
+          )
         }
         .disabled(viewStore.isFilteringDisabled)
         .padding()
@@ -57,7 +64,8 @@ struct MenuView_Previews: PreviewProvider {
       MenuView(store: Store(
         initialState: MenuState(
           isImageLoaded: false,
-          blur: 0
+          blur: 0,
+          saturation: 1
         ),
         reducer: menuReducer,
         environment: ()
