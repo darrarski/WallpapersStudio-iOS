@@ -1,11 +1,19 @@
-import CoreGraphics
-import class UIKit.UIImage
-import class UIKit.UIGraphicsImageRenderer
+import ComposableArchitecture
+import SwiftUI
+import UIKit
 
 typealias CanvasRenderer = (CanvasState) -> UIImage
 
 let defaultCanvasRenderer: CanvasRenderer = { canvas in
-  UIGraphicsImageRenderer(size: canvas.size).image { _ in
-    canvas.image.draw(in: canvas.frame)
+  let canvasView = CanvasView(store: Store(
+    initialState: canvas,
+    reducer: .empty,
+    environment: ()
+  ))
+  let viewController = UIHostingController(rootView: canvasView)
+  let view = viewController.view!
+  view.frame = CGRect(origin: .zero, size: canvas.size)
+  return UIGraphicsImageRenderer(size: view.bounds.size).image { context in
+    view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
   }
 }

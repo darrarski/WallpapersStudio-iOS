@@ -49,7 +49,6 @@
 		31D7D251250EF75400BEC3EA /* CanvasReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D250250EF75400BEC3EA /* CanvasReducer.swift */; };
 		31D7D253250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D252250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift */; };
 		31D7D255250EFFD900BEC3EA /* CanvasViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D7D254250EFFD900BEC3EA /* CanvasViewState.swift */; };
-		31D97E7F2510DA99000B19FD /* ImageBlurModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D97E7E2510DA99000B19FD /* ImageBlurModifier.swift */; };
 		31FFD20B25102F3000C2A010 /* PhotoLibraryWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FFD20A25102F3000C2A010 /* PhotoLibraryWriter.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,7 +107,6 @@
 		31D7D250250EF75400BEC3EA /* CanvasReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasReducer.swift; sourceTree = "<group>"; };
 		31D7D252250EFC2400BEC3EA /* CanvasSizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasSizePreferenceKey.swift; sourceTree = "<group>"; };
 		31D7D254250EFFD900BEC3EA /* CanvasViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewState.swift; sourceTree = "<group>"; };
-		31D97E7E2510DA99000B19FD /* ImageBlurModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBlurModifier.swift; sourceTree = "<group>"; };
 		31FFD20A25102F3000C2A010 /* PhotoLibraryWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryWriter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				31BCD13A25102395007E33B4 /* CanvasRenderer.swift */,
-				31D97E7E2510DA99000B19FD /* ImageBlurModifier.swift */,
 				31FFD20A25102F3000C2A010 /* PhotoLibraryWriter.swift */,
 			);
 			path = Image;
@@ -499,7 +496,6 @@
 				315D89B3250FAE6A00DFF6FC /* MainReducer.swift in Sources */,
 				31D7D251250EF75400BEC3EA /* CanvasReducer.swift in Sources */,
 				31D7D24D250EF6D700BEC3EA /* CanvasState.swift in Sources */,
-				31D97E7F2510DA99000B19FD /* ImageBlurModifier.swift in Sources */,
 				315D89AB250F88F600DFF6FC /* MenuReducer.swift in Sources */,
 				31BCE3AC250AC23300B8E259 /* MainApp.swift in Sources */,
 				315D89A7250F88E000DFF6FC /* MenuState.swift in Sources */,

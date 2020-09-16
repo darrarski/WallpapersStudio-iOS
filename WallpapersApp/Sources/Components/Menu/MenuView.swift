@@ -56,7 +56,10 @@ struct MenuView_Previews: PreviewProvider {
     VStack {
       Spacer()
       MenuView(store: Store(
-        initialState: MenuState(),
+        initialState: MenuState(
+          isImageLoaded: false,
+          blur: 0
+        ),
         reducer: menuReducer,
         environment: ()
       ))

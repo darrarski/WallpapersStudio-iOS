@@ -170,44 +170,17 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testMenuUpdateBlur() {
-    let loadedImage = image(color: .red, size: CGSize(width: 1, height: 1))
-    var didBlurImage: [(image: UIImage, radius: CGFloat)] = []
-    let blurredImage = image(color: .blue, size: CGSize(width: 1, height: 1))
-    let filterQueue = DispatchQueue.testScheduler
-    let mainScheduler = DispatchQueue.testScheduler
-
     let store = TestStore(
       initialState: EditorState(
-        image: loadedImage,
         canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
       ),
       reducer: editorReducer,
-      environment: EditorEnvironment(
-        renderCanvas: { _ in fatalError() },
-        savePhoto: { _ in fatalError() },
-        blurImage: { image, radius in
-          didBlurImage.append((image, radius))
-          return blurredImage
-        },
-        filterQueue: AnyScheduler(filterQueue),
-        mainQueue: AnyScheduler(mainScheduler)
-      )
+      environment: EditorEnvironment()
     )
 
     store.assert(
-      .send(.menu(.updateBlur(0.33))) {
-        $0.menu.blur = 0.33
-      },
-      .receive(.applyFilters),
-      .do { filterQueue.advance() },
-      .do {
-        XCTAssertEqual(didBlurImage.count, 1)
-        XCTAssertEqual(didBlurImage.first?.image, loadedImage)
-        XCTAssertEqual(didBlurImage.first?.radius, 0.33 * 32)
-      },
-      .do { mainScheduler.advance() },
-      .receive(.didApplyFilters(blurredImage)) {
-        $0.canvas!.image = blurredImage
+      .send(.menu(.updateBlur(0.66))) {
+        $0.canvas?.blur = 0.66
       }
     )
   }

@@ -7,7 +7,10 @@ final class MenuReducerTests: XCTestCase {
 
   override func setUp() {
     store = TestStore(
-      initialState: MenuState(),
+      initialState: MenuState(
+        isImageLoaded: false,
+        blur: 0
+      ),
       reducer: menuReducer,
       environment: ()
     )
