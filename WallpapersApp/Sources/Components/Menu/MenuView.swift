@@ -6,22 +6,28 @@ struct MenuView: View {
 
   var body: some View {
     WithViewStore(store.scope(state: MenuViewState.init(state:))) { viewStore in
-      VStack(alignment: .leading) {
-        Button(action: { viewStore.send(.importFromLibrary) }) {
-          HStack(alignment: .firstTextBaseline) {
-            Image(systemName: "square.and.arrow.down")
-            Text("Import photo from library")
+      VStack {
+        HStack {
+          Button(action: { viewStore.send(.importFromLibrary) }) {
+            HStack(alignment: .firstTextBaseline) {
+              Image(systemName: "square.and.arrow.down")
+                .offset(x: 0, y: -2)
+              Text("Import")
+            }
+            .padding()
           }
-          .padding()
-        }
-        Button(action: { viewStore.send(.exportToLibrary) }) {
-          HStack(alignment: .firstTextBaseline) {
-            Image(systemName: "square.and.arrow.up")
-            Text("Export wallpaper to library")
+          Spacer()
+          Button(action: { viewStore.send(.exportToLibrary) }) {
+            HStack(alignment: .firstTextBaseline) {
+              Text("Export")
+              Image(systemName: "square.and.arrow.up")
+                .offset(x: 0, y: -2)
+            }
+            .padding()
           }
-          .padding()
+          .disabled(viewStore.isExportDisabled)
+          .opacity(viewStore.isExportDisabled ? 0.5 : 1)
         }
-        .disabled(viewStore.isExportDisabled)
         VStack {
           FilterSlider(
             icon: "drop",
@@ -39,6 +45,7 @@ struct MenuView: View {
           )
         }
         .disabled(viewStore.isFilteringDisabled)
+        .opacity(viewStore.isFilteringDisabled ? 0.5 : 1)
         .padding()
       }
       .padding()

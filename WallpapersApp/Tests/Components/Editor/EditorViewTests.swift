@@ -16,10 +16,17 @@ final class EditorViewTests: XCTestCase {
     )
   }
 
-  func testSnapshotWithoutLoadedImage() {
+  func testSnapshotWithLoadedImage() {
     assertSnapshot(
       matching: EditorView(store: Store(
-        initialState: EditorState(),
+        initialState: EditorState(
+          image: UIImage(),
+          canvas: CanvasState(
+            size: .zero,
+            image: UIImage(),
+            frame: .zero
+          )
+        ),
         reducer: .empty,
         environment: ()
       )),
