@@ -1,13 +1,13 @@
 struct MainEnvironment {
   var renderCanvas: CanvasRenderer = defaultCanvasRenderer
-  var savePhoto: PhotoLibraryWriter = defaultPhotoLibraryWriter
+  var photoLibraryWriter: PhotoLibraryWriting = PhotoLibraryWriter()
 }
 
 extension MainEnvironment {
   var editorEnv: EditorEnvironment {
     EditorEnvironment(
       renderCanvas: renderCanvas,
-      savePhoto: savePhoto
+      photoLibraryWriter: photoLibraryWriter
     )
   }
 }

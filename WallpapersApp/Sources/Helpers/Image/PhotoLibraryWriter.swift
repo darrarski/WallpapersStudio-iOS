@@ -1,34 +1,43 @@
-import Combine
-import ComposableArchitecture
+import Foundation
 import class UIKit.UIImage
 import func UIKit.UIImageWriteToSavedPhotosAlbum
 
-typealias PhotoLibraryWriter = (UIImage) -> AnyPublisher<Void, Error>
+protocol PhotoLibraryWriting {
+  func write(image: UIImage, completion: @escaping (Error?) -> Void)
+}
 
-let defaultPhotoLibraryWriter: PhotoLibraryWriter = { image in
-  final class SaveImage: NSObject {
-    init(_ image: UIImage, completion: @escaping (Error?) -> Void) {
+struct PhotoLibraryWriter: PhotoLibraryWriting {
+  typealias WriteFunction = (UIImage, Any?, Selector?, UnsafeMutableRawPointer?) -> Void
+  let writeFunction: WriteFunction
+
+  init(writeFunction: @escaping WriteFunction = UIImageWriteToSavedPhotosAlbum) {
+    self.writeFunction = writeFunction
+  }
+
+  func write(image: UIImage, completion: @escaping (Error?) -> Void) {
+    var handler: CompletionHandler?
+    handler = CompletionHandler { error in
+      completion(error)
+      _ = handler
+    }
+    writeFunction(
+      image,
+      handler,
+      #selector(CompletionHandler.image(_:error:context:)),
+      nil
+    )
+  }
+
+  private class CompletionHandler: NSObject {
+    init(completion: @escaping (Error?) -> Void) {
       self.completion = completion
       super.init()
-      UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:error:context:)), nil)
     }
 
-    private let completion: (Error?) -> Void
+    let completion: (Error?) -> Void
 
-    @objc private func image(_ image: UIImage, error: Error?, context: UnsafeRawPointer) {
+    @objc func image(_ image: UIImage, error: Error?, context: UnsafeRawPointer) {
       completion(error)
     }
   }
-
-  return Effect<Void, Error>.run { subscriber in
-    var writer: SaveImage? = SaveImage(image, completion: { error in
-      if let error = error {
-        subscriber.send(completion: .failure(error))
-      } else {
-        subscriber.send(())
-        subscriber.send(completion: .finished)
-      }
-    })
-    return AnyCancellable { writer = nil }
-  }.eraseToAnyPublisher()
 }

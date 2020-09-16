@@ -99,8 +99,7 @@ final class EditorReducerTests: XCTestCase {
   func testExportingImage() {
     var didRenderCanvas: [CanvasState] = []
     let renderedCanvas: UIImage = image(color: .blue, size: CGSize(width: 4, height: 6))
-    var didSavePhoto: [UIImage] = []
-    let savePhotoSubject = PassthroughSubject<Void, Error>()
+    let photoLibraryWriter = PhotoLibraryWriterDouble()
     let initialState = EditorState(
       canvas: CanvasState(
         size: CGSize(width: 4, height: 6),
@@ -119,10 +118,7 @@ final class EditorReducerTests: XCTestCase {
           didRenderCanvas.append(canvas)
           return renderedCanvas
         },
-        savePhoto: { image in
-          didSavePhoto.append(image)
-          return savePhotoSubject.eraseToAnyPublisher()
-        }
+        photoLibraryWriter: photoLibraryWriter
       )
     )
 
@@ -131,13 +127,12 @@ final class EditorReducerTests: XCTestCase {
       .receive(.exportImage),
       .do {
         XCTAssertEqual(didRenderCanvas, [initialState.canvas!])
-        XCTAssertEqual(didSavePhoto, [renderedCanvas])
-        savePhotoSubject.send(())
+        XCTAssertEqual(photoLibraryWriter.didWriteImages, [renderedCanvas])
+        photoLibraryWriter.completion?(nil)
       },
       .receive(.didExportImage) {
         $0.isPresentingAlert = .exportSuccess
       },
-      .do { savePhotoSubject.send(completion: .finished) },
       .send(.dismissAlert) {
         $0.isPresentingAlert = nil
       }
@@ -145,8 +140,8 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testExportingImageFailure() {
-    let savePhotoSubject = PassthroughSubject<Void, Error>()
     let error = NSError(domain: "test", code: 1234, userInfo: nil)
+    let photoLibraryWriter = PhotoLibraryWriterDouble()
     let store = TestStore(
       initialState: EditorState(
         canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
@@ -154,14 +149,14 @@ final class EditorReducerTests: XCTestCase {
       reducer: editorReducer,
       environment: EditorEnvironment(
         renderCanvas: { _ in UIImage() },
-        savePhoto: { _ in savePhotoSubject.eraseToAnyPublisher() }
+        photoLibraryWriter: photoLibraryWriter
       )
     )
 
     store.assert(
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
-      .do { savePhotoSubject.send(completion: .failure(error)) },
+      .do { photoLibraryWriter.completion?(error) },
       .receive(.didFailExportingImage) {
         $0.isPresentingAlert = .exportFailure
       },
@@ -192,5 +187,15 @@ final class EditorReducerTests: XCTestCase {
       color.setFill()
       context.fill(CGRect(origin: .zero, size: size))
     }
+  }
+}
+
+private class PhotoLibraryWriterDouble: PhotoLibraryWriting {
+  private(set) var didWriteImages: [UIImage] = []
+  private(set) var completion: ((Error?) -> Void)?
+
+  func write(image: UIImage, completion: @escaping (Error?) -> Void) {
+    didWriteImages.append(image)
+    self.completion = completion
   }
 }

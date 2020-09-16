@@ -36,11 +36,16 @@ let editorReducer = EditorReducer.combine(
 
     case .exportImage:
       guard let canvas = state.canvas else { return .none }
-      let image = env.renderCanvas(canvas)
-      return env.savePhoto(image)
-        .map { _ in EditorAction.didExportImage }
-        .replaceError(with: EditorAction.didFailExportingImage)
-        .eraseToEffect()
+      return Effect.future { fulfill in
+        let image = env.renderCanvas(canvas)
+        env.photoLibraryWriter.write(image: image) { error in
+          if error == nil {
+            fulfill(.success(.didExportImage))
+          } else {
+            fulfill(.success(.didFailExportingImage))
+          }
+        }
+      }
 
     case .didExportImage:
       state.isPresentingAlert = .exportSuccess
