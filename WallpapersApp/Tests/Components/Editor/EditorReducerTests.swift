@@ -60,23 +60,25 @@ final class EditorReducerTests: XCTestCase {
         $0.menu.isImageLoaded = true
       },
       .receive(.canvas(.scaleToFill)) {
-        $0.canvas?.frame.size = .zero
+        $0.canvas!.frame.origin = CGPoint(x: -24, y: -16)
+        $0.canvas!.frame.size = CGSize(width: 48, height: 32)
       },
       .send(.canvas(.updateSize(CGSize(width: 3, height: 4)))) {
-        $0.canvas?.size = CGSize(width: 3, height: 4)
+        $0.canvas!.size = CGSize(width: 3, height: 4)
       },
       .receive(.canvas(.scaleToFill)) {
-        $0.canvas?.frame.origin = CGPoint(x: -1.5, y: 0)
-        $0.canvas?.frame.size = image1.size
+        $0.canvas!.frame.origin = CGPoint(x: -25.5, y: -16)
+        $0.canvas!.frame.size = CGSize(width: 54, height: 36)
       },
       .send(.loadImage(image2)) {
         $0.image = image2
-        $0.canvas?.image = image2
-        $0.canvas?.frame.origin = .zero
-        $0.canvas?.frame.size = image2.size
+        $0.canvas!.image = image2
+        $0.canvas!.frame.origin = .zero
+        $0.canvas!.frame.size = image2.size
       },
       .receive(.canvas(.scaleToFill)) {
-        $0.canvas?.frame.origin = CGPoint(x: 0, y: -1)
+        $0.canvas!.frame.origin = CGPoint(x: -16, y: -33)
+        $0.canvas!.frame.size = CGSize(width: 35, height: 70)
       }
     )
   }

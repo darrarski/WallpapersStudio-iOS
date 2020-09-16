@@ -34,8 +34,8 @@ let canvasReducer = CanvasReducer { state, action, _ in
       size: state.image.size
     )
     let scale = max(
-      state.size.width / state.image.size.width,
-      state.size.height / state.image.size.height
+      (state.size.width + 32) / state.image.size.width,
+      (state.size.height + 32) / state.image.size.height
     )
     state.frame = state.frame.applying(.scaledBy(scale, anchor: state.frame.center))
     return .none

@@ -8,9 +8,9 @@ final class CanvasReducerTests: XCTestCase {
   override func setUp() {
     store = TestStore(
       initialState: CanvasState(
-        size: CGSize(width: 4, height: 6),
-        image: image(size: CGSize(width: 10, height: 8)),
-        frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 8))
+        size: CGSize(width: 400, height: 600),
+        image: image(size: CGSize(width: 1000, height: 800)),
+        frame: CGRect(origin: .zero, size: CGSize(width: 1000, height: 800))
       ),
       reducer: canvasReducer,
       environment: ()
@@ -23,19 +23,19 @@ final class CanvasReducerTests: XCTestCase {
 
   func testUpdateSize() {
     store.assert(
-      .send(.updateSize(CGSize(width: 10, height: 10))) {
-        $0.size = CGSize(width: 10, height: 10)
+      .send(.updateSize(CGSize(width: 100, height: 100))) {
+        $0.size = CGSize(width: 100, height: 100)
       },
       .send(.updateSize(.zero)) {
         $0.size = .zero
       },
-      .send(.updateSize(CGSize(width: 4, height: 6))) {
-        $0.size = CGSize(width: 4, height: 6)
+      .send(.updateSize(CGSize(width: 400, height: 600))) {
+        $0.size = CGSize(width: 400, height: 600)
       },
       .receive(.scaleToFill) {
         $0.frame = CGRect(
-          origin: CGPoint(x: -1.75, y: 0),
-          size: CGSize(width: 7.5, height: 6)
+          origin: CGPoint(x: -195, y: -16),
+          size: CGSize(width: 790, height: 632)
         )
       }
     )
@@ -53,8 +53,8 @@ final class CanvasReducerTests: XCTestCase {
     store.assert(
       .send(.updateScale(delta: 1.5)) {
         $0.frame = CGRect(
-          origin: CGPoint(x: -1, y: -1.5),
-          size: CGSize(width: 15, height: 12)
+          origin: CGPoint(x: -100, y: -150),
+          size: CGSize(width: 1500, height: 1200)
         )
       }
     )
@@ -64,8 +64,8 @@ final class CanvasReducerTests: XCTestCase {
     store.assert(
       .send(.scaleToFill) {
         $0.frame = CGRect(
-          origin: CGPoint(x: -1.75, y: 0),
-          size: CGSize(width: 7.5, height: 6)
+          origin: CGPoint(x: -195, y: -16),
+          size: CGSize(width: 790, height: 632)
         )
       }
     )
