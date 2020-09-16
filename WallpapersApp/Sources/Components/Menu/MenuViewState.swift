@@ -15,7 +15,7 @@ struct MenuViewState: Equatable {
       text: String(format: "%.f %%", state.blur * 100)
     )
     saturation = SliderState(
-      range: 0...2,
+      range: 0...3,
       value: state.saturation,
       text: String(format: "%.f %%", state.saturation * 100)
     )
