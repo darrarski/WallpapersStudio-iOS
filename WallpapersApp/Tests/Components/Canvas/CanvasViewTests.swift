@@ -108,6 +108,12 @@ final class CanvasViewTests: XCTestCase {
     )
   }
 
+  func testSizePreferenceKey() {
+    var size = CGSize(width: 2, height: 3)
+    CanvasSizePreferenceKey.reduce(value: &size, nextValue: { CGSize(width: 5, height: 3) })
+    XCTAssertEqual(size, CGSize(width: 5, height: 3))
+  }
+
   private func image(size: CGSize) -> UIImage {
     UIGraphicsImageRenderer(size: size).image { context in
       let halfSize = CGSize(width: size.width / 2, height: size.height / 2)
