@@ -13,6 +13,10 @@ This iOS application allows you to easily create wallpaper for your phone from t
 3. Apply blur and adjust saturation and hue rotation using sliders
 4. Export cropped wallpaper image to Photo Library
 
+|🖼|🖼|🖼|
+|:-:|:-:|:-:|
+|![Screenshot_1_iPhone_5.5_inch_small.png](WallpapersApp/Resources/Screenshots/Screenshot_1_iPhone_5.5_inch_small.png)|![Screenshot_2_iPhone_5.5_inch_small.png](WallpapersApp/Resources/Screenshots/Screenshot_2_iPhone_5.5_inch_small.png)|![Screenshot_3_iPhone_5.5_inch_small.png](WallpapersApp/Resources/Screenshots/Screenshot_3_iPhone_5.5_inch_small.png)|
+
 [![Download on the App Store](WallpapersApp/Resources/Download_on_the_App_Store_badge.png)](https://apps.apple.com/pl/app/wallpapers-studio/id1531974217)
 
 ## 🛠 Tech stack
