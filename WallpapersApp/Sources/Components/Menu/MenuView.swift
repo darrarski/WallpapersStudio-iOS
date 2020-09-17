@@ -66,6 +66,7 @@ struct MenuView: View {
           )
           .edgesIgnoringSafeArea(.all)
       )
+      .frame(maxWidth: 640)
     }
   }
 }
@@ -86,6 +87,7 @@ struct MenuView_Previews: PreviewProvider {
         environment: ()
       ))
     }
+    .frame(maxWidth: .infinity)
     .background(Color.accentColor.edgesIgnoringSafeArea(.all))
   }
 }
