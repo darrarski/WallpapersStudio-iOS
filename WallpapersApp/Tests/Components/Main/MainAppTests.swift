@@ -7,10 +7,17 @@ final class MainAppTests: XCTestCase {
     let appTelemetryDefaultInitializer = AppTelemetry.initialize
     var didInitializeWithConfig: TelemetryManagerConfiguration?
     AppTelemetry.initialize = { didInitializeWithConfig = $0 }
-    defer { AppTelemetry.initialize = appTelemetryDefaultInitializer }
+    let appTelemetryDefaultSend = AppTelemetry.send
+    var didSendSignals = [AppTelemetry.Signal]()
+    AppTelemetry.send = { didSendSignals.append($0) }
+    defer {
+      AppTelemetry.initialize = appTelemetryDefaultInitializer
+      AppTelemetry.send = appTelemetryDefaultSend
+    }
 
     _ = MainApp()
 
     XCTAssertEqual(didInitializeWithConfig?.telemetryAppID, "YOUR-APP-UNIQUE-IDENTIFIER")
+    XCTAssertEqual(didSendSignals, [.appStart])
   }
 }

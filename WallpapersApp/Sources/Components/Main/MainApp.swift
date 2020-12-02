@@ -17,6 +17,7 @@ struct MainApp: App {
       appID: "YOUR-APP-UNIQUE-IDENTIFIER"
     )
     environment.appTelemetry.initialize(appTelemetryConfig)
+    environment.appTelemetry.send(.appStart)
   }
 
   var body: some Scene {
