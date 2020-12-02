@@ -35,7 +35,6 @@
 		317EBC1D250C59D600E7F7CE /* CGAffineTransform+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */; };
 		317EBC23250C5AED00E7F7CE /* GeometryProxy+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */; };
 		3187BD71250EB1FA0033E053 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 3187BD70250EB1FA0033E053 /* ComposableArchitecture */; };
-		31BCD13825102284007E33B4 /* EditorEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCD13725102284007E33B4 /* EditorEnvironment.swift */; };
 		31BCD13B25102395007E33B4 /* CanvasRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCD13A25102395007E33B4 /* CanvasRenderer.swift */; };
 		31BCD13D25102441007E33B4 /* MainEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCD13C25102441007E33B4 /* MainEnvironment.swift */; };
 		31BCE3AC250AC23300B8E259 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BCE3AB250AC23300B8E259 /* MainApp.swift */; };
@@ -97,7 +96,6 @@
 		317BB155250D05D600FEA20D /* CGRect+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Center.swift"; sourceTree = "<group>"; };
 		317EBC1C250C59D600E7F7CE /* CGAffineTransform+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Scaled.swift"; sourceTree = "<group>"; };
 		317EBC22250C5AED00E7F7CE /* GeometryProxy+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeometryProxy+Size.swift"; sourceTree = "<group>"; };
-		31BCD13725102284007E33B4 /* EditorEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorEnvironment.swift; sourceTree = "<group>"; };
 		31BCD13A25102395007E33B4 /* CanvasRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRenderer.swift; sourceTree = "<group>"; };
 		31BCD13C25102441007E33B4 /* MainEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEnvironment.swift; sourceTree = "<group>"; };
 		31BCE3A8250AC23300B8E259 /* Wallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -311,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				31D7D23A250EB64500BEC3EA /* EditorAction.swift */,
-				31BCD13725102284007E33B4 /* EditorEnvironment.swift */,
 				31D7D23C250EB65300BEC3EA /* EditorReducer.swift */,
 				31D7D238250EB63B00BEC3EA /* EditorState.swift */,
 				31BCE3AD250AC23300B8E259 /* EditorView.swift */,
@@ -532,7 +529,6 @@
 				31BCE3AE250AC23300B8E259 /* EditorView.swift in Sources */,
 				31D7D248250EDBDF00BEC3EA /* View+Frame.swift in Sources */,
 				31D7D246250ED72E00BEC3EA /* CanvasView.swift in Sources */,
-				31BCD13825102284007E33B4 /* EditorEnvironment.swift in Sources */,
 				314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */,
 				31BCD13D25102441007E33B4 /* MainEnvironment.swift in Sources */,
 				31D7D241250EB67400BEC3EA /* EditorViewState.swift in Sources */,

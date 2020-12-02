@@ -8,7 +8,7 @@ final class EditorReducerTests: XCTestCase {
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment()
     )
 
     store.assert(
@@ -26,7 +26,7 @@ final class EditorReducerTests: XCTestCase {
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment()
     )
 
     store.assert(
@@ -43,7 +43,7 @@ final class EditorReducerTests: XCTestCase {
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment()
     )
 
     let image1 = image(color: .red, size: CGSize(width: 6, height: 4))
@@ -85,7 +85,7 @@ final class EditorReducerTests: XCTestCase {
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment()
     )
 
     store.assert(
@@ -111,7 +111,7 @@ final class EditorReducerTests: XCTestCase {
     let store = TestStore(
       initialState: initialState,
       reducer: editorReducer,
-      environment: EditorEnvironment(
+      environment: MainEnvironment(
         renderCanvas: { canvas -> UIImage in
           didRenderCanvas.append(canvas)
           return renderedCanvas
@@ -145,7 +145,7 @@ final class EditorReducerTests: XCTestCase {
         canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
       ),
       reducer: editorReducer,
-      environment: EditorEnvironment(
+      environment: MainEnvironment(
         renderCanvas: { _ in UIImage() },
         photoLibraryWriter: photoLibraryWriter
       )
@@ -170,7 +170,7 @@ final class EditorReducerTests: XCTestCase {
         canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
       ),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment()
     )
 
     store.assert(

@@ -2,7 +2,7 @@ import Combine
 import ComposableArchitecture
 import CoreGraphics
 
-typealias EditorReducer = Reducer<EditorState, EditorAction, EditorEnvironment>
+typealias EditorReducer = Reducer<EditorState, EditorAction, MainEnvironment>
 
 let editorReducer = EditorReducer.combine(
   canvasReducer.optional().pullback(
