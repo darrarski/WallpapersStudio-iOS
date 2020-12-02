@@ -55,6 +55,14 @@ extension AppTelemetry {
         "hue": format(hue)
       ])
     }
+
+    static var didExportImage: Signal {
+      Signal(name: "didExportImage")
+    }
+
+    static var didFailExportingImage: Signal {
+      Signal(name: "didFailExportingImage")
+    }
   }
 }
 

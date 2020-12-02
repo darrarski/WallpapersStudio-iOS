@@ -70,11 +70,15 @@ let editorReducer = EditorReducer.combine(
 
     case .didExportImage:
       state.isPresentingAlert = .exportSuccess
-      return .none
+      return .fireAndForget {
+        env.appTelemetry.send(.didExportImage)
+      }
 
     case .didFailExportingImage:
       state.isPresentingAlert = .exportFailure
-      return .none
+      return .fireAndForget {
+        env.appTelemetry.send(.didFailExportingImage)
+      }
 
     case .dismissAlert:
       state.isPresentingAlert = nil

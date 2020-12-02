@@ -191,6 +191,10 @@ final class EditorReducerTests: XCTestCase {
       .receive(.didExportImage) {
         $0.isPresentingAlert = .exportSuccess
       },
+      .do {
+        XCTAssertEqual(didSendSignals.count, 3)
+        XCTAssertEqual(didSendSignals.last, .didExportImage)
+      },
       .send(.dismissAlert) {
         $0.isPresentingAlert = nil
       }
@@ -234,6 +238,10 @@ final class EditorReducerTests: XCTestCase {
       },
       .receive(.didFailExportingImage) {
         $0.isPresentingAlert = .exportFailure
+      },
+      .do {
+        XCTAssertEqual(didSendSignals.count, 3)
+        XCTAssertEqual(didSendSignals.last, .didFailExportingImage)
       },
       .send(.dismissAlert) {
         $0.isPresentingAlert = nil
