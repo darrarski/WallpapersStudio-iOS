@@ -20,6 +20,10 @@ extension AppTelemetry {
     static func toggleMenu(_ present: Bool) -> Signal {
       Signal(name: "toggleMenu", payload: ["presented": format(present)])
     }
+
+    static var importFromLibrary: Signal {
+      Signal(name: "importFromLibrary")
+    }
   }
 }
 

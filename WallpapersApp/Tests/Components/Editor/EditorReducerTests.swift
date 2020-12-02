@@ -5,16 +5,24 @@ import ComposableArchitecture
 
 final class EditorReducerTests: XCTestCase {
   func testPresentImagePicker() {
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: MainEnvironment()
+      environment: MainEnvironment(
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
+      )
     )
 
     store.assert(
       .send(.menu(.importFromLibrary)),
       .receive(.presentImagePicker(true)) {
         $0.isPresentingImagePicker = true
+      },
+      .do {
+        XCTAssertEqual(didSendSignals, [.importFromLibrary])
       },
       .send(.presentImagePicker(false)) {
         $0.isPresentingImagePicker = false
