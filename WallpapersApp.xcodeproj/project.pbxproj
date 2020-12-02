@@ -13,6 +13,7 @@
 		313D050C2512BAF100A703E9 /* FilterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313D050B2512BAF100A703E9 /* FilterSlider.swift */; };
 		314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E28250BBBB40053ACAA /* DragModifier.swift */; };
 		314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */; };
+		3157FA8025783DF3005001F5 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 3157FA7F25783DF3005001F5 /* TelemetryClient */; };
 		315D89A7250F88E000DFF6FC /* MenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89A6250F88E000DFF6FC /* MenuState.swift */; };
 		315D89A9250F88ED00DFF6FC /* MenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89A8250F88ED00DFF6FC /* MenuAction.swift */; };
 		315D89AB250F88F600DFF6FC /* MenuReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AA250F88F600DFF6FC /* MenuReducer.swift */; };
@@ -132,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3187BD71250EB1FA0033E053 /* ComposableArchitecture in Frameworks */,
+				3157FA8025783DF3005001F5 /* TelemetryClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +420,7 @@
 			name = WallpapersApp;
 			packageProductDependencies = (
 				3187BD70250EB1FA0033E053 /* ComposableArchitecture */,
+				3157FA7F25783DF3005001F5 /* TelemetryClient */,
 			);
 			productName = WallpapersApp;
 			productReference = 31BCE3A8250AC23300B8E259 /* Wallpapers.app */;
@@ -453,6 +456,7 @@
 			packageReferences = (
 				3187BD6F250EB1FA0033E053 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				315D89C2250FB41300DFF6FC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				3157FA7E25783DF3005001F5 /* XCRemoteSwiftPackageReference "SwiftClient" */,
 			);
 			productRefGroup = 31BCE3A9250AC23300B8E259 /* Products */;
 			projectDirPath = "";
@@ -793,6 +797,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3157FA7E25783DF3005001F5 /* XCRemoteSwiftPackageReference "SwiftClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppTelemetry/SwiftClient";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.8;
+			};
+		};
 		315D89C2250FB41300DFF6FC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
@@ -812,6 +824,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3157FA7F25783DF3005001F5 /* TelemetryClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3157FA7E25783DF3005001F5 /* XCRemoteSwiftPackageReference "SwiftClient" */;
+			productName = TelemetryClient;
+		};
 		315D89C3250FB41300DFF6FC /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 315D89C2250FB41300DFF6FC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
