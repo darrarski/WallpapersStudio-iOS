@@ -14,6 +14,8 @@
 		314E1E29250BBBB40053ACAA /* DragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E28250BBBB40053ACAA /* DragModifier.swift */; };
 		314E1E2B250BBBD00053ACAA /* MagnificationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */; };
 		3157FA8025783DF3005001F5 /* TelemetryClient in Frameworks */ = {isa = PBXBuildFile; productRef = 3157FA7F25783DF3005001F5 /* TelemetryClient */; };
+		3157FA8525784112005001F5 /* AppTelemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3157FA8425784112005001F5 /* AppTelemetry.swift */; };
+		3157FA8B2578429D005001F5 /* MainAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3157FA8A2578429D005001F5 /* MainAppTests.swift */; };
 		315D89A7250F88E000DFF6FC /* MenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89A6250F88E000DFF6FC /* MenuState.swift */; };
 		315D89A9250F88ED00DFF6FC /* MenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89A8250F88ED00DFF6FC /* MenuAction.swift */; };
 		315D89AB250F88F600DFF6FC /* MenuReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D89AA250F88F600DFF6FC /* MenuReducer.swift */; };
@@ -74,6 +76,8 @@
 		313D050B2512BAF100A703E9 /* FilterSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSlider.swift; sourceTree = "<group>"; };
 		314E1E28250BBBB40053ACAA /* DragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragModifier.swift; sourceTree = "<group>"; };
 		314E1E2A250BBBD00053ACAA /* MagnificationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnificationModifier.swift; sourceTree = "<group>"; };
+		3157FA8425784112005001F5 /* AppTelemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTelemetry.swift; sourceTree = "<group>"; };
+		3157FA8A2578429D005001F5 /* MainAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppTests.swift; sourceTree = "<group>"; };
 		315D89A6250F88E000DFF6FC /* MenuState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuState.swift; sourceTree = "<group>"; };
 		315D89A8250F88ED00DFF6FC /* MenuAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAction.swift; sourceTree = "<group>"; };
 		315D89AA250F88F600DFF6FC /* MenuReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuReducer.swift; sourceTree = "<group>"; };
@@ -140,6 +144,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3157FA8325784101005001F5 /* AppTelemetry */ = {
+			isa = PBXGroup;
+			children = (
+				3157FA8425784112005001F5 /* AppTelemetry.swift */,
+			);
+			path = AppTelemetry;
+			sourceTree = "<group>";
+		};
 		315D89B9250FB2D300DFF6FC /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				315D89D6250FBA6600DFF6FC /* MainReducerTests.swift */,
+				3157FA8A2578429D005001F5 /* MainAppTests.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -310,6 +323,7 @@
 		31F19092250EB37700F90738 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3157FA8325784101005001F5 /* AppTelemetry */,
 				31F19096250EB4EF00F90738 /* Geometry */,
 				31BCD1392510237E007E33B4 /* Image */,
 				31F19098250EB51100F90738 /* Shapes */,
@@ -500,6 +514,7 @@
 				315D89D4250FB61000DFF6FC /* MenuViewTests.swift in Sources */,
 				315D89D8250FBA6900DFF6FC /* MainReducerTests.swift in Sources */,
 				31BDE05F2512523E00668D3E /* PhotoLibraryWriterTests.swift in Sources */,
+				3157FA8B2578429D005001F5 /* MainAppTests.swift in Sources */,
 				315D89DE250FBD4000DFF6FC /* EditorViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +527,7 @@
 				31D7D255250EFFD900BEC3EA /* CanvasViewState.swift in Sources */,
 				311BCCEF250BF9C00084B100 /* MenuView.swift in Sources */,
 				31BE6153250AC7790032CE9D /* ImagePicker.swift in Sources */,
+				3157FA8525784112005001F5 /* AppTelemetry.swift in Sources */,
 				31D7D23D250EB65300BEC3EA /* EditorReducer.swift in Sources */,
 				31BCE3AE250AC23300B8E259 /* EditorView.swift in Sources */,
 				31D7D248250EDBDF00BEC3EA /* View+Frame.swift in Sources */,

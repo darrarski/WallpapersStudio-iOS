@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import TelemetryClient
 
 @main
 struct MainApp: App {
@@ -12,6 +13,10 @@ struct MainApp: App {
       reducer: mainReducer,
       environment: environment
     )
+    let appTelemetryConfig = TelemetryManagerConfiguration(
+      appID: "YOUR-APP-UNIQUE-IDENTIFIER"
+    )
+    environment.appTelemetry.initialize(appTelemetryConfig)
   }
 
   var body: some Scene {
