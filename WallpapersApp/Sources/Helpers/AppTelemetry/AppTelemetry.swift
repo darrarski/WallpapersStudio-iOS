@@ -1,12 +1,14 @@
 import TelemetryClient
 
 struct AppTelemetry {
+  static var initialize: (TelemetryManagerConfiguration) -> Void = TelemetryManager.initialize(with:)
+  static var send: (Signal) -> Void = TelemetryManager.send
+}
+
+extension AppTelemetry {
   enum Signal: String {
     case appStart
   }
-
-  static var initialize: (TelemetryManagerConfiguration) -> Void = TelemetryManager.initialize(with:)
-  static var send: (Signal) -> Void = TelemetryManager.send
 }
 
 extension TelemetryManager {
