@@ -1,6 +1,8 @@
 import TelemetryClient
 import struct CoreGraphics.CGFloat
 import struct CoreGraphics.CGSize
+import struct CoreGraphics.CGPoint
+import struct CoreGraphics.CGRect
 
 struct AppTelemetry {
   static var defaultInitializer: (TelemetryManagerConfiguration) -> Void = TelemetryManager.initialize(with:)
@@ -37,6 +39,22 @@ extension AppTelemetry {
     static var exportToLibrary: Signal {
       Signal(name: "exportToLibrary")
     }
+
+    static func exportImage(
+      size: CGSize,
+      frame: CGRect,
+      blur: CGFloat,
+      saturation: CGFloat,
+      hue: CGFloat
+    ) -> Signal {
+      Signal(name: "exportImage", payload: [
+        "size": format(size),
+        "frame": format(frame),
+        "blur": format(blur),
+        "saturation": format(saturation),
+        "hue": format(hue)
+      ])
+    }
   }
 }
 
@@ -56,4 +74,12 @@ private func format(_ float: CGFloat) -> String {
 
 private func format(_ size: CGSize) -> String {
   "W:\(format(size.width)) H:\(format(size.height))"
+}
+
+private func format(_ point: CGPoint) -> String {
+  "X:\(format(point.x)) Y:\(format(point.y))"
+}
+
+private func format(_ rect: CGRect) -> String {
+  "\(format(rect.origin)) \(format(rect.size))"
 }

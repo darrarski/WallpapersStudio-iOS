@@ -46,16 +46,27 @@ let editorReducer = EditorReducer.combine(
 
     case .exportImage:
       guard let canvas = state.canvas else { return .none }
-      return Effect.future { fulfill in
-        let image = env.renderCanvas(canvas)
-        env.photoLibraryWriter.write(image: image) { error in
-          if error == nil {
-            fulfill(.success(.didExportImage))
-          } else {
-            fulfill(.success(.didFailExportingImage))
+      return .merge(
+        .future { fulfill in
+          let image = env.renderCanvas(canvas)
+          env.photoLibraryWriter.write(image: image) { error in
+            if error == nil {
+              fulfill(.success(.didExportImage))
+            } else {
+              fulfill(.success(.didFailExportingImage))
+            }
           }
+        },
+        .fireAndForget {
+          env.appTelemetry.send(.exportImage(
+            size: canvas.size,
+            frame: canvas.frame,
+            blur: canvas.blur,
+            saturation: canvas.saturation,
+            hue: canvas.hue
+          ))
         }
-      }
+      )
 
     case .didExportImage:
       state.isPresentingAlert = .exportSuccess

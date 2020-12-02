@@ -174,9 +174,18 @@ final class EditorReducerTests: XCTestCase {
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
       .do {
-        XCTAssertEqual(didSendSignals, [.exportToLibrary])
         XCTAssertEqual(didRenderCanvas, [initialState.canvas!])
         XCTAssertEqual(photoLibraryWriter.didWriteImages, [renderedCanvas])
+        XCTAssertEqual(didSendSignals, [
+          .exportToLibrary,
+          .exportImage(
+            size: initialState.canvas!.size,
+            frame: initialState.canvas!.frame,
+            blur: initialState.canvas!.blur,
+            saturation: initialState.canvas!.saturation,
+            hue: initialState.canvas!.hue
+          )
+        ])
         photoLibraryWriter.completion?(nil)
       },
       .receive(.didExportImage) {
@@ -192,10 +201,11 @@ final class EditorReducerTests: XCTestCase {
     let error = NSError(domain: "test", code: 1234, userInfo: nil)
     let photoLibraryWriter = PhotoLibraryWriterDouble()
     var didSendSignals = [AppTelemetry.Signal]()
+    let initialState = EditorState(
+      canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
+    )
     let store = TestStore(
-      initialState: EditorState(
-        canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
-      ),
+      initialState: initialState,
       reducer: editorReducer,
       environment: MainEnvironment(
         renderCanvas: { _ in UIImage() },
@@ -210,7 +220,16 @@ final class EditorReducerTests: XCTestCase {
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
       .do {
-        XCTAssertEqual(didSendSignals, [.exportToLibrary])
+        XCTAssertEqual(didSendSignals, [
+          .exportToLibrary,
+          .exportImage(
+            size: initialState.canvas!.size,
+            frame: initialState.canvas!.frame,
+            blur: initialState.canvas!.blur,
+            saturation: initialState.canvas!.saturation,
+            hue: initialState.canvas!.hue
+          )
+        ])
         photoLibraryWriter.completion?(error)
       },
       .receive(.didFailExportingImage) {
