@@ -60,10 +60,15 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testLoadImage() {
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: MainEnvironment()
+      environment: MainEnvironment(
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
+      )
     )
 
     let image1 = image(color: .red, size: CGSize(width: 6, height: 4))
@@ -82,6 +87,12 @@ final class EditorReducerTests: XCTestCase {
         $0.canvas!.frame.origin = CGPoint(x: -24, y: -16)
         $0.canvas!.frame.size = CGSize(width: 48, height: 32)
       },
+      .do {
+        XCTAssertEqual(didSendSignals, [.loadImage(
+          size: image1.size,
+          scale: image1.scale
+        )])
+      },
       .send(.canvas(.updateSize(CGSize(width: 3, height: 4)))) {
         $0.canvas!.size = CGSize(width: 3, height: 4)
       },
@@ -97,6 +108,13 @@ final class EditorReducerTests: XCTestCase {
       .receive(.canvas(.scaleToFill)) {
         $0.canvas!.frame.origin = CGPoint(x: -16, y: -33)
         $0.canvas!.frame.size = CGSize(width: 35, height: 70)
+      },
+      .do {
+        XCTAssertEqual(didSendSignals.count, 2)
+        XCTAssertEqual(didSendSignals.last, .loadImage(
+          size: image2.size,
+          scale: image2.scale
+        ))
       }
     )
   }

@@ -34,7 +34,15 @@ let editorReducer = EditorReducer.combine(
         image: image,
         frame: CGRect(origin: .zero, size: image.size)
       )
-      return .init(value: .canvas(.scaleToFill))
+      return .merge(
+        .init(value: .canvas(.scaleToFill)),
+        .fireAndForget {
+          env.appTelemetry.send(.loadImage(
+            size: image.size,
+            scale: image.scale
+          ))
+        }
+      )
 
     case .exportImage:
       guard let canvas = state.canvas else { return .none }
