@@ -33,6 +33,10 @@ extension AppTelemetry {
         "scale": format(scale)
       ])
     }
+
+    static var exportToLibrary: Signal {
+      Signal(name: "exportToLibrary")
+    }
   }
 }
 

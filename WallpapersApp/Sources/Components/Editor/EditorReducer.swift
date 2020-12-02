@@ -81,7 +81,12 @@ let editorReducer = EditorReducer.combine(
       )
 
     case .menu(.exportToLibrary):
-      return .init(value: .exportImage)
+      return .merge(
+        .init(value: .exportImage),
+        .fireAndForget {
+          env.appTelemetry.send(.exportToLibrary)
+        }
+      )
 
     case .menu(_):
       return .none

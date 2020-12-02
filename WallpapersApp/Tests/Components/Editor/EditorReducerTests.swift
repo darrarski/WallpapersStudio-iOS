@@ -120,15 +120,23 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testExportingImageWhenNoImageLoaded() {
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: MainEnvironment()
+      environment: MainEnvironment(
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
+      )
     )
 
     store.assert(
       .send(.menu(.exportToLibrary)),
-      .receive(.exportImage)
+      .receive(.exportImage),
+      .do {
+        XCTAssertEqual(didSendSignals, [.exportToLibrary])
+      }
     )
   }
 
@@ -136,6 +144,7 @@ final class EditorReducerTests: XCTestCase {
     var didRenderCanvas: [CanvasState] = []
     let renderedCanvas: UIImage = image(color: .blue, size: CGSize(width: 4, height: 6))
     let photoLibraryWriter = PhotoLibraryWriterDouble()
+    var didSendSignals = [AppTelemetry.Signal]()
     let initialState = EditorState(
       canvas: CanvasState(
         size: CGSize(width: 4, height: 6),
@@ -154,7 +163,10 @@ final class EditorReducerTests: XCTestCase {
           didRenderCanvas.append(canvas)
           return renderedCanvas
         },
-        photoLibraryWriter: photoLibraryWriter
+        photoLibraryWriter: photoLibraryWriter,
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
       )
     )
 
@@ -162,6 +174,7 @@ final class EditorReducerTests: XCTestCase {
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
       .do {
+        XCTAssertEqual(didSendSignals, [.exportToLibrary])
         XCTAssertEqual(didRenderCanvas, [initialState.canvas!])
         XCTAssertEqual(photoLibraryWriter.didWriteImages, [renderedCanvas])
         photoLibraryWriter.completion?(nil)
@@ -178,6 +191,7 @@ final class EditorReducerTests: XCTestCase {
   func testExportingImageFailure() {
     let error = NSError(domain: "test", code: 1234, userInfo: nil)
     let photoLibraryWriter = PhotoLibraryWriterDouble()
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(
         canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
@@ -185,14 +199,20 @@ final class EditorReducerTests: XCTestCase {
       reducer: editorReducer,
       environment: MainEnvironment(
         renderCanvas: { _ in UIImage() },
-        photoLibraryWriter: photoLibraryWriter
+        photoLibraryWriter: photoLibraryWriter,
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
       )
     )
 
     store.assert(
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
-      .do { photoLibraryWriter.completion?(error) },
+      .do {
+        XCTAssertEqual(didSendSignals, [.exportToLibrary])
+        photoLibraryWriter.completion?(error)
+      },
       .receive(.didFailExportingImage) {
         $0.isPresentingAlert = .exportFailure
       },
