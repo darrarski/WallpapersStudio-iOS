@@ -1,8 +1,11 @@
 import TelemetryClient
 
 struct AppTelemetry {
-  static var initialize: (TelemetryManagerConfiguration) -> Void = TelemetryManager.initialize(with:)
-  static var send: (Signal) -> Void = TelemetryManager.send
+  static var defaultInitializer: (TelemetryManagerConfiguration) -> Void = TelemetryManager.initialize(with:)
+  static var defaultSend: (Signal) -> Void = TelemetryManager.send
+
+  var initialize: (TelemetryManagerConfiguration) -> Void = Self.defaultInitializer
+  var send: (Signal) -> Void = Self.defaultSend
 }
 
 extension AppTelemetry {

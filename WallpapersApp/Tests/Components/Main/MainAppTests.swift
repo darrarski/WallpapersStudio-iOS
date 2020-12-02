@@ -4,15 +4,15 @@ import TelemetryClient
 
 final class MainAppTests: XCTestCase {
   func testAppTelemetryInitialization() {
-    let appTelemetryDefaultInitializer = AppTelemetry.initialize
+    let appTelemetryDefaultInitializer = AppTelemetry.defaultInitializer
     var didInitializeWithConfig: TelemetryManagerConfiguration?
-    AppTelemetry.initialize = { didInitializeWithConfig = $0 }
-    let appTelemetryDefaultSend = AppTelemetry.send
+    AppTelemetry.defaultInitializer = { didInitializeWithConfig = $0 }
+    let appTelemetryDefaultSend = AppTelemetry.defaultSend
     var didSendSignals = [AppTelemetry.Signal]()
-    AppTelemetry.send = { didSendSignals.append($0) }
+    AppTelemetry.defaultSend = { didSendSignals.append($0) }
     defer {
-      AppTelemetry.initialize = appTelemetryDefaultInitializer
-      AppTelemetry.send = appTelemetryDefaultSend
+      AppTelemetry.defaultInitializer = appTelemetryDefaultInitializer
+      AppTelemetry.defaultSend = appTelemetryDefaultSend
     }
 
     _ = MainApp()
