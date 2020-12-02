@@ -6,11 +6,16 @@ struct AppTelemetry {
 }
 
 extension AppTelemetry {
-  enum Signal: String {
-    case appStart
+  struct Signal: Equatable {
+    var name: String
+    var payload: [String: String] = [:]
+
+    static let appStart = Signal(name: "appStart")
   }
 }
 
 extension TelemetryManager {
-  static func send(_ signal: AppTelemetry.Signal) { send(signal.rawValue) }
+  static func send(_ signal: AppTelemetry.Signal) {
+    send(signal.name, with: signal.payload)
+  }
 }
