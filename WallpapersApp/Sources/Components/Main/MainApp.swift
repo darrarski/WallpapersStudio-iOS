@@ -3,11 +3,16 @@ import ComposableArchitecture
 
 @main
 struct MainApp: App {
-  let store = Store<MainState, MainAction>(
-    initialState: MainState(),
-    reducer: mainReducer,
-    environment: MainEnvironment()
-  )
+  let store: Store<MainState, MainAction>
+
+  init() {
+    let environment = MainEnvironment()
+    store = Store(
+      initialState: MainState(),
+      reducer: mainReducer,
+      environment: environment
+    )
+  }
 
   var body: some Scene {
     WindowGroup {
