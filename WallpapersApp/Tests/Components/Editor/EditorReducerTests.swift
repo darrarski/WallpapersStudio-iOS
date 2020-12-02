@@ -23,18 +23,30 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testToggleMenu() {
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: MainEnvironment()
+      environment: MainEnvironment(
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
+      )
     )
 
     store.assert(
       .send(.toggleMenu) {
         $0.isPresentingMenu.toggle()
       },
+      .do {
+        XCTAssertEqual(didSendSignals, [.toggleMenu(false)])
+      },
       .send(.toggleMenu) {
         $0.isPresentingMenu.toggle()
+      },
+      .do {
+        XCTAssertEqual(didSendSignals.count, 2)
+        XCTAssertEqual(didSendSignals.last, .toggleMenu(true))
       }
     )
   }

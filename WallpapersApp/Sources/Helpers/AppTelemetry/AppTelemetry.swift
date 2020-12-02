@@ -13,12 +13,22 @@ extension AppTelemetry {
     var name: String
     var payload: [String: String] = [:]
 
-    static let appStart = Signal(name: "appStart")
+    static var appStart: Signal {
+      Signal(name: "appStart")
+    }
+
+    static func toggleMenu(_ present: Bool) -> Signal {
+      Signal(name: "toggleMenu", payload: ["presented": format(present)])
+    }
   }
 }
 
-extension TelemetryManager {
+private extension TelemetryManager {
   static func send(_ signal: AppTelemetry.Signal) {
     send(signal.name, with: signal.payload)
   }
+}
+
+private func format(_ bool: Bool) -> String {
+  bool ? "true" : "false"
 }

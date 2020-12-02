@@ -23,7 +23,10 @@ let editorReducer = EditorReducer.combine(
 
     case .toggleMenu:
       state.isPresentingMenu.toggle()
-      return .none
+      let isPresentingMenu = state.isPresentingMenu
+      return .fireAndForget {
+        env.appTelemetry.send(.toggleMenu(isPresentingMenu))
+      }
 
     case .loadImage(let image):
       state.canvas = CanvasState(
