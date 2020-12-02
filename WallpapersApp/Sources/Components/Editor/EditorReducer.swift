@@ -2,7 +2,7 @@ import Combine
 import ComposableArchitecture
 import CoreGraphics
 
-typealias EditorReducer = Reducer<EditorState, EditorAction, EditorEnvironment>
+typealias EditorReducer = Reducer<EditorState, EditorAction, MainEnvironment>
 
 let editorReducer = EditorReducer.combine(
   canvasReducer.optional().pullback(
@@ -23,7 +23,10 @@ let editorReducer = EditorReducer.combine(
 
     case .toggleMenu:
       state.isPresentingMenu.toggle()
-      return .none
+      let isPresentingMenu = state.isPresentingMenu
+      return .fireAndForget {
+        env.appTelemetry.send(.toggleMenu(isPresentingMenu))
+      }
 
     case .loadImage(let image):
       state.canvas = CanvasState(
@@ -31,28 +34,51 @@ let editorReducer = EditorReducer.combine(
         image: image,
         frame: CGRect(origin: .zero, size: image.size)
       )
-      return .init(value: .canvas(.scaleToFill))
+      return .merge(
+        .init(value: .canvas(.scaleToFill)),
+        .fireAndForget {
+          env.appTelemetry.send(.loadImage(
+            size: image.size,
+            scale: image.scale
+          ))
+        }
+      )
 
     case .exportImage:
       guard let canvas = state.canvas else { return .none }
-      return Effect.future { fulfill in
-        let image = env.renderCanvas(canvas)
-        env.photoLibraryWriter.write(image: image) { error in
-          if error == nil {
-            fulfill(.success(.didExportImage))
-          } else {
-            fulfill(.success(.didFailExportingImage))
+      return .merge(
+        .future { fulfill in
+          let image = env.renderCanvas(canvas)
+          env.photoLibraryWriter.write(image: image) { error in
+            if error == nil {
+              fulfill(.success(.didExportImage))
+            } else {
+              fulfill(.success(.didFailExportingImage))
+            }
           }
+        },
+        .fireAndForget {
+          env.appTelemetry.send(.exportImage(
+            size: canvas.size,
+            frame: canvas.frame,
+            blur: canvas.blur,
+            saturation: canvas.saturation,
+            hue: canvas.hue
+          ))
         }
-      }
+      )
 
     case .didExportImage:
       state.isPresentingAlert = .exportSuccess
-      return .none
+      return .fireAndForget {
+        env.appTelemetry.send(.didExportImage)
+      }
 
     case .didFailExportingImage:
       state.isPresentingAlert = .exportFailure
-      return .none
+      return .fireAndForget {
+        env.appTelemetry.send(.didFailExportingImage)
+      }
 
     case .dismissAlert:
       state.isPresentingAlert = nil
@@ -62,10 +88,20 @@ let editorReducer = EditorReducer.combine(
       return .none
 
     case .menu(.importFromLibrary):
-      return .init(value: .presentImagePicker(true))
+      return .merge(
+        .init(value: .presentImagePicker(true)),
+        .fireAndForget {
+          env.appTelemetry.send(.importFromLibrary)
+        }
+      )
 
     case .menu(.exportToLibrary):
-      return .init(value: .exportImage)
+      return .merge(
+        .init(value: .exportImage),
+        .fireAndForget {
+          env.appTelemetry.send(.exportToLibrary)
+        }
+      )
 
     case .menu(_):
       return .none

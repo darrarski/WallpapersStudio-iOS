@@ -1,13 +1,24 @@
 import SwiftUI
 import ComposableArchitecture
+import TelemetryClient
 
 @main
 struct MainApp: App {
-  let store = Store<MainState, MainAction>(
-    initialState: MainState(),
-    reducer: mainReducer,
-    environment: MainEnvironment()
-  )
+  let store: Store<MainState, MainAction>
+
+  init() {
+    let environment = MainEnvironment()
+    store = Store(
+      initialState: MainState(),
+      reducer: mainReducer,
+      environment: environment
+    )
+    let appTelemetryConfig = TelemetryManagerConfiguration(
+      appID: "YOUR-APP-UNIQUE-IDENTIFIER"
+    )
+    environment.appTelemetry.initialize(appTelemetryConfig)
+    environment.appTelemetry.send(.appStart)
+  }
 
   var body: some Scene {
     WindowGroup {

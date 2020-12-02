@@ -5,16 +5,24 @@ import ComposableArchitecture
 
 final class EditorReducerTests: XCTestCase {
   func testPresentImagePicker() {
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment(
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
+      )
     )
 
     store.assert(
       .send(.menu(.importFromLibrary)),
       .receive(.presentImagePicker(true)) {
         $0.isPresentingImagePicker = true
+      },
+      .do {
+        XCTAssertEqual(didSendSignals, [.importFromLibrary])
       },
       .send(.presentImagePicker(false)) {
         $0.isPresentingImagePicker = false
@@ -23,27 +31,44 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testToggleMenu() {
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment(
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
+      )
     )
 
     store.assert(
       .send(.toggleMenu) {
         $0.isPresentingMenu.toggle()
       },
+      .do {
+        XCTAssertEqual(didSendSignals, [.toggleMenu(false)])
+      },
       .send(.toggleMenu) {
         $0.isPresentingMenu.toggle()
+      },
+      .do {
+        XCTAssertEqual(didSendSignals.count, 2)
+        XCTAssertEqual(didSendSignals.last, .toggleMenu(true))
       }
     )
   }
 
   func testLoadImage() {
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment(
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
+      )
     )
 
     let image1 = image(color: .red, size: CGSize(width: 6, height: 4))
@@ -62,6 +87,12 @@ final class EditorReducerTests: XCTestCase {
         $0.canvas!.frame.origin = CGPoint(x: -24, y: -16)
         $0.canvas!.frame.size = CGSize(width: 48, height: 32)
       },
+      .do {
+        XCTAssertEqual(didSendSignals, [.loadImage(
+          size: image1.size,
+          scale: image1.scale
+        )])
+      },
       .send(.canvas(.updateSize(CGSize(width: 3, height: 4)))) {
         $0.canvas!.size = CGSize(width: 3, height: 4)
       },
@@ -77,20 +108,35 @@ final class EditorReducerTests: XCTestCase {
       .receive(.canvas(.scaleToFill)) {
         $0.canvas!.frame.origin = CGPoint(x: -16, y: -33)
         $0.canvas!.frame.size = CGSize(width: 35, height: 70)
+      },
+      .do {
+        XCTAssertEqual(didSendSignals.count, 2)
+        XCTAssertEqual(didSendSignals.last, .loadImage(
+          size: image2.size,
+          scale: image2.scale
+        ))
       }
     )
   }
 
   func testExportingImageWhenNoImageLoaded() {
+    var didSendSignals = [AppTelemetry.Signal]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment(
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
+      )
     )
 
     store.assert(
       .send(.menu(.exportToLibrary)),
-      .receive(.exportImage)
+      .receive(.exportImage),
+      .do {
+        XCTAssertEqual(didSendSignals, [.exportToLibrary])
+      }
     )
   }
 
@@ -98,6 +144,7 @@ final class EditorReducerTests: XCTestCase {
     var didRenderCanvas: [CanvasState] = []
     let renderedCanvas: UIImage = image(color: .blue, size: CGSize(width: 4, height: 6))
     let photoLibraryWriter = PhotoLibraryWriterDouble()
+    var didSendSignals = [AppTelemetry.Signal]()
     let initialState = EditorState(
       canvas: CanvasState(
         size: CGSize(width: 4, height: 6),
@@ -111,12 +158,15 @@ final class EditorReducerTests: XCTestCase {
     let store = TestStore(
       initialState: initialState,
       reducer: editorReducer,
-      environment: EditorEnvironment(
+      environment: MainEnvironment(
         renderCanvas: { canvas -> UIImage in
           didRenderCanvas.append(canvas)
           return renderedCanvas
         },
-        photoLibraryWriter: photoLibraryWriter
+        photoLibraryWriter: photoLibraryWriter,
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
       )
     )
 
@@ -126,10 +176,24 @@ final class EditorReducerTests: XCTestCase {
       .do {
         XCTAssertEqual(didRenderCanvas, [initialState.canvas!])
         XCTAssertEqual(photoLibraryWriter.didWriteImages, [renderedCanvas])
+        XCTAssertEqual(didSendSignals, [
+          .exportToLibrary,
+          .exportImage(
+            size: initialState.canvas!.size,
+            frame: initialState.canvas!.frame,
+            blur: initialState.canvas!.blur,
+            saturation: initialState.canvas!.saturation,
+            hue: initialState.canvas!.hue
+          )
+        ])
         photoLibraryWriter.completion?(nil)
       },
       .receive(.didExportImage) {
         $0.isPresentingAlert = .exportSuccess
+      },
+      .do {
+        XCTAssertEqual(didSendSignals.count, 3)
+        XCTAssertEqual(didSendSignals.last, .didExportImage)
       },
       .send(.dismissAlert) {
         $0.isPresentingAlert = nil
@@ -140,23 +204,44 @@ final class EditorReducerTests: XCTestCase {
   func testExportingImageFailure() {
     let error = NSError(domain: "test", code: 1234, userInfo: nil)
     let photoLibraryWriter = PhotoLibraryWriterDouble()
+    var didSendSignals = [AppTelemetry.Signal]()
+    let initialState = EditorState(
+      canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
+    )
     let store = TestStore(
-      initialState: EditorState(
-        canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
-      ),
+      initialState: initialState,
       reducer: editorReducer,
-      environment: EditorEnvironment(
+      environment: MainEnvironment(
         renderCanvas: { _ in UIImage() },
-        photoLibraryWriter: photoLibraryWriter
+        photoLibraryWriter: photoLibraryWriter,
+        appTelemetry: AppTelemetry(send: {
+          didSendSignals.append($0)
+        })
       )
     )
 
     store.assert(
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
-      .do { photoLibraryWriter.completion?(error) },
+      .do {
+        XCTAssertEqual(didSendSignals, [
+          .exportToLibrary,
+          .exportImage(
+            size: initialState.canvas!.size,
+            frame: initialState.canvas!.frame,
+            blur: initialState.canvas!.blur,
+            saturation: initialState.canvas!.saturation,
+            hue: initialState.canvas!.hue
+          )
+        ])
+        photoLibraryWriter.completion?(error)
+      },
       .receive(.didFailExportingImage) {
         $0.isPresentingAlert = .exportFailure
+      },
+      .do {
+        XCTAssertEqual(didSendSignals.count, 3)
+        XCTAssertEqual(didSendSignals.last, .didFailExportingImage)
       },
       .send(.dismissAlert) {
         $0.isPresentingAlert = nil
@@ -170,7 +255,7 @@ final class EditorReducerTests: XCTestCase {
         canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
       ),
       reducer: editorReducer,
-      environment: EditorEnvironment()
+      environment: MainEnvironment()
     )
 
     store.assert(
