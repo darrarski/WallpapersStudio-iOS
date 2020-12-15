@@ -21,7 +21,7 @@ This iOS application allows you to easily create wallpaper for your phone from t
 
 ## 🛠 Tech stack
 
-- [Xcode](https://developer.apple.com/xcode/) v12.0
+- [Xcode](https://developer.apple.com/xcode/) v12.3
 - [Swift](https://swift.org/) v5.3
 - [ComposableArchitecture](https://github.com/pointfreeco/swift-composable-architecture) v0.8.0
 
