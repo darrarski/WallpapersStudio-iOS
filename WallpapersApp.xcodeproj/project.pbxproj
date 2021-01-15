@@ -861,16 +861,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
 			requirement = {
-				kind = exactVersion;
-				version = 1.8.2;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
 			};
 		};
 		3187BD6F250EB1FA0033E053 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
-				kind = exactVersion;
-				version = 0.8.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
 			};
 		};
 		31D845F525B1DD19001F96E0 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
