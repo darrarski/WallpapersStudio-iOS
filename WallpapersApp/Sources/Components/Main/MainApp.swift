@@ -13,11 +13,8 @@ struct MainApp: App {
       reducer: mainReducer,
       environment: environment
     )
-    let appTelemetryConfig = TelemetryManagerConfiguration(
-      appID: "YOUR-APP-UNIQUE-IDENTIFIER"
-    )
-    environment.appTelemetry.initialize(appTelemetryConfig)
-    environment.appTelemetry.send(.appStart)
+    environment.analytics.setup()
+    environment.analytics.send(.appStart)
   }
 
   var body: some Scene {

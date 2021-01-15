@@ -25,7 +25,7 @@ let editorReducer = EditorReducer.combine(
       state.isPresentingMenu.toggle()
       let isPresentingMenu = state.isPresentingMenu
       return .fireAndForget {
-        env.appTelemetry.send(.toggleMenu(isPresentingMenu))
+        env.analytics.send(.toggleMenu(isPresentingMenu))
       }
 
     case .loadImage(let image):
@@ -37,7 +37,7 @@ let editorReducer = EditorReducer.combine(
       return .merge(
         .init(value: .canvas(.scaleToFill)),
         .fireAndForget {
-          env.appTelemetry.send(.loadImage(
+          env.analytics.send(.loadImage(
             size: image.size,
             scale: image.scale
           ))
@@ -58,7 +58,7 @@ let editorReducer = EditorReducer.combine(
           }
         },
         .fireAndForget {
-          env.appTelemetry.send(.exportImage(
+          env.analytics.send(.exportImage(
             size: canvas.size,
             frame: canvas.frame,
             blur: canvas.blur,
@@ -71,13 +71,13 @@ let editorReducer = EditorReducer.combine(
     case .didExportImage:
       state.isPresentingAlert = .exportSuccess
       return .fireAndForget {
-        env.appTelemetry.send(.didExportImage)
+        env.analytics.send(.didExportImage)
       }
 
     case .didFailExportingImage:
       state.isPresentingAlert = .exportFailure
       return .fireAndForget {
-        env.appTelemetry.send(.didFailExportingImage)
+        env.analytics.send(.didFailExportingImage)
       }
 
     case .dismissAlert:
@@ -91,7 +91,7 @@ let editorReducer = EditorReducer.combine(
       return .merge(
         .init(value: .presentImagePicker(true)),
         .fireAndForget {
-          env.appTelemetry.send(.importFromLibrary)
+          env.analytics.send(.importFromLibrary)
         }
       )
 
@@ -99,7 +99,7 @@ let editorReducer = EditorReducer.combine(
       return .merge(
         .init(value: .exportImage),
         .fireAndForget {
-          env.appTelemetry.send(.exportToLibrary)
+          env.analytics.send(.exportToLibrary)
         }
       )
 

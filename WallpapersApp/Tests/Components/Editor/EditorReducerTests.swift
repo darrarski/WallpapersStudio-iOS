@@ -5,14 +5,15 @@ import ComposableArchitecture
 
 final class EditorReducerTests: XCTestCase {
   func testPresentImagePicker() {
-    var didSendSignals = [AppTelemetry.Signal]()
+    var didSendEvents = [AnalyticsEvent]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
       environment: MainEnvironment(
-        appTelemetry: AppTelemetry(send: {
-          didSendSignals.append($0)
-        })
+        analytics: Analytics(
+          setup: { fatalError() },
+          send: { didSendEvents.append($0) }
+        )
       )
     )
 
@@ -22,7 +23,7 @@ final class EditorReducerTests: XCTestCase {
         $0.isPresentingImagePicker = true
       },
       .do {
-        XCTAssertEqual(didSendSignals, [.importFromLibrary])
+        XCTAssertEqual(didSendEvents, [.importFromLibrary])
       },
       .send(.presentImagePicker(false)) {
         $0.isPresentingImagePicker = false
@@ -31,14 +32,15 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testToggleMenu() {
-    var didSendSignals = [AppTelemetry.Signal]()
+    var didSendEvents = [AnalyticsEvent]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
       environment: MainEnvironment(
-        appTelemetry: AppTelemetry(send: {
-          didSendSignals.append($0)
-        })
+        analytics: Analytics(
+          setup: { fatalError() },
+          send: { didSendEvents.append($0) }
+        )
       )
     )
 
@@ -47,27 +49,28 @@ final class EditorReducerTests: XCTestCase {
         $0.isPresentingMenu.toggle()
       },
       .do {
-        XCTAssertEqual(didSendSignals, [.toggleMenu(false)])
+        XCTAssertEqual(didSendEvents, [.toggleMenu(false)])
       },
       .send(.toggleMenu) {
         $0.isPresentingMenu.toggle()
       },
       .do {
-        XCTAssertEqual(didSendSignals.count, 2)
-        XCTAssertEqual(didSendSignals.last, .toggleMenu(true))
+        XCTAssertEqual(didSendEvents.count, 2)
+        XCTAssertEqual(didSendEvents.last, .toggleMenu(true))
       }
     )
   }
 
   func testLoadImage() {
-    var didSendSignals = [AppTelemetry.Signal]()
+    var didSendEvents = [AnalyticsEvent]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
       environment: MainEnvironment(
-        appTelemetry: AppTelemetry(send: {
-          didSendSignals.append($0)
-        })
+        analytics: Analytics(
+          setup: { fatalError() },
+          send: { didSendEvents.append($0) }
+        )
       )
     )
 
@@ -88,7 +91,7 @@ final class EditorReducerTests: XCTestCase {
         $0.canvas!.frame.size = CGSize(width: 48, height: 32)
       },
       .do {
-        XCTAssertEqual(didSendSignals, [.loadImage(
+        XCTAssertEqual(didSendEvents, [.loadImage(
           size: image1.size,
           scale: image1.scale
         )])
@@ -110,8 +113,8 @@ final class EditorReducerTests: XCTestCase {
         $0.canvas!.frame.size = CGSize(width: 35, height: 70)
       },
       .do {
-        XCTAssertEqual(didSendSignals.count, 2)
-        XCTAssertEqual(didSendSignals.last, .loadImage(
+        XCTAssertEqual(didSendEvents.count, 2)
+        XCTAssertEqual(didSendEvents.last, .loadImage(
           size: image2.size,
           scale: image2.scale
         ))
@@ -120,14 +123,15 @@ final class EditorReducerTests: XCTestCase {
   }
 
   func testExportingImageWhenNoImageLoaded() {
-    var didSendSignals = [AppTelemetry.Signal]()
+    var didSendEvents = [AnalyticsEvent]()
     let store = TestStore(
       initialState: EditorState(),
       reducer: editorReducer,
       environment: MainEnvironment(
-        appTelemetry: AppTelemetry(send: {
-          didSendSignals.append($0)
-        })
+        analytics: Analytics(
+          setup: { fatalError() },
+          send: { didSendEvents.append($0) }
+        )
       )
     )
 
@@ -135,7 +139,7 @@ final class EditorReducerTests: XCTestCase {
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
       .do {
-        XCTAssertEqual(didSendSignals, [.exportToLibrary])
+        XCTAssertEqual(didSendEvents, [.exportToLibrary])
       }
     )
   }
@@ -144,7 +148,7 @@ final class EditorReducerTests: XCTestCase {
     var didRenderCanvas: [CanvasState] = []
     let renderedCanvas: UIImage = image(color: .blue, size: CGSize(width: 4, height: 6))
     let photoLibraryWriter = PhotoLibraryWriterDouble()
-    var didSendSignals = [AppTelemetry.Signal]()
+    var didSendEvents = [AnalyticsEvent]()
     let initialState = EditorState(
       canvas: CanvasState(
         size: CGSize(width: 4, height: 6),
@@ -164,9 +168,10 @@ final class EditorReducerTests: XCTestCase {
           return renderedCanvas
         },
         photoLibraryWriter: photoLibraryWriter,
-        appTelemetry: AppTelemetry(send: {
-          didSendSignals.append($0)
-        })
+        analytics: Analytics(
+          setup: { fatalError() },
+          send: { didSendEvents.append($0) }
+        )
       )
     )
 
@@ -176,7 +181,7 @@ final class EditorReducerTests: XCTestCase {
       .do {
         XCTAssertEqual(didRenderCanvas, [initialState.canvas!])
         XCTAssertEqual(photoLibraryWriter.didWriteImages, [renderedCanvas])
-        XCTAssertEqual(didSendSignals, [
+        XCTAssertEqual(didSendEvents, [
           .exportToLibrary,
           .exportImage(
             size: initialState.canvas!.size,
@@ -192,8 +197,8 @@ final class EditorReducerTests: XCTestCase {
         $0.isPresentingAlert = .exportSuccess
       },
       .do {
-        XCTAssertEqual(didSendSignals.count, 3)
-        XCTAssertEqual(didSendSignals.last, .didExportImage)
+        XCTAssertEqual(didSendEvents.count, 3)
+        XCTAssertEqual(didSendEvents.last, .didExportImage)
       },
       .send(.dismissAlert) {
         $0.isPresentingAlert = nil
@@ -204,7 +209,7 @@ final class EditorReducerTests: XCTestCase {
   func testExportingImageFailure() {
     let error = NSError(domain: "test", code: 1234, userInfo: nil)
     let photoLibraryWriter = PhotoLibraryWriterDouble()
-    var didSendSignals = [AppTelemetry.Signal]()
+    var didSendEvents = [AnalyticsEvent]()
     let initialState = EditorState(
       canvas: CanvasState(size: .zero, image: UIImage(), frame: .zero)
     )
@@ -214,9 +219,10 @@ final class EditorReducerTests: XCTestCase {
       environment: MainEnvironment(
         renderCanvas: { _ in UIImage() },
         photoLibraryWriter: photoLibraryWriter,
-        appTelemetry: AppTelemetry(send: {
-          didSendSignals.append($0)
-        })
+        analytics: Analytics(
+          setup: { fatalError() },
+          send: { didSendEvents.append($0) }
+        )
       )
     )
 
@@ -224,7 +230,7 @@ final class EditorReducerTests: XCTestCase {
       .send(.menu(.exportToLibrary)),
       .receive(.exportImage),
       .do {
-        XCTAssertEqual(didSendSignals, [
+        XCTAssertEqual(didSendEvents, [
           .exportToLibrary,
           .exportImage(
             size: initialState.canvas!.size,
@@ -240,8 +246,8 @@ final class EditorReducerTests: XCTestCase {
         $0.isPresentingAlert = .exportFailure
       },
       .do {
-        XCTAssertEqual(didSendSignals.count, 3)
-        XCTAssertEqual(didSendSignals.last, .didFailExportingImage)
+        XCTAssertEqual(didSendEvents.count, 3)
+        XCTAssertEqual(didSendEvents.last, .didFailExportingImage)
       },
       .send(.dismissAlert) {
         $0.isPresentingAlert = nil
