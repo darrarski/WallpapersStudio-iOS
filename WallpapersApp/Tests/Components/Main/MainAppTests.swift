@@ -3,21 +3,19 @@ import XCTest
 import TelemetryClient
 
 final class MainAppTests: XCTestCase {
-  func testAppTelemetryInitialization() {
-    let appTelemetryDefaultInitializer = AppTelemetry.defaultInitializer
-    var didInitializeWithConfig: TelemetryManagerConfiguration?
-    AppTelemetry.defaultInitializer = { didInitializeWithConfig = $0 }
-    let appTelemetryDefaultSend = AppTelemetry.defaultSend
-    var didSendSignals = [AppTelemetry.Signal]()
-    AppTelemetry.defaultSend = { didSendSignals.append($0) }
-    defer {
-      AppTelemetry.defaultInitializer = appTelemetryDefaultInitializer
-      AppTelemetry.defaultSend = appTelemetryDefaultSend
-    }
+  func testAnalytics() {
+    let defaultAnalytics = Analytics.default
+    defer { Analytics.default = defaultAnalytics }
+    var didSetup = false
+    var didSendEvents = [AnalyticsEvent]()
+    Analytics.default = Analytics(
+      setup: { didSetup = true },
+      send: { didSendEvents.append($0) }
+    )
 
     _ = MainApp()
 
-    XCTAssertEqual(didInitializeWithConfig?.telemetryAppID, "YOUR-APP-UNIQUE-IDENTIFIER")
-    XCTAssertEqual(didSendSignals, [.appStart])
+    XCTAssertTrue(didSetup)
+    XCTAssertEqual(didSendEvents, [.appStart])
   }
 }

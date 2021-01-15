@@ -13,16 +13,13 @@ struct MainApp: App {
       reducer: mainReducer,
       environment: environment
     )
-    let appTelemetryConfig = TelemetryManagerConfiguration(
-      appID: "YOUR-APP-UNIQUE-IDENTIFIER"
-    )
-    environment.appTelemetry.initialize(appTelemetryConfig)
-    environment.appTelemetry.send(.appStart)
+    environment.analytics.setup()
+    environment.analytics.send(.appStart)
   }
 
   var body: some Scene {
     WindowGroup {
-      if NSClassFromString("XCTestCase") == nil {
+      if !isRunningTests {
         EditorView(store: store.scope(
           state: \.editor,
           action: MainAction.editor
