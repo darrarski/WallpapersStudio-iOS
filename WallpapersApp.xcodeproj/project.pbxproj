@@ -60,6 +60,7 @@
 		31D845E425B1D358001F96E0 /* Analytics+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D845E325B1D358001F96E0 /* Analytics+Stub.swift */; };
 		31D845E825B1D362001F96E0 /* Analytics+Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D845E725B1D362001F96E0 /* Analytics+Standard.swift */; };
 		31D845EC25B1D46C001F96E0 /* Analytics+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D845EB25B1D46C001F96E0 /* Analytics+Default.swift */; };
+		31D845F725B1DD19001F96E0 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 31D845F625B1DD19001F96E0 /* Mixpanel */; };
 		31F1498A2512460A00DF04D5 /* CanvasRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F149892512460A00DF04D5 /* CanvasRendererTests.swift */; };
 		31F149922512474D00DF04D5 /* test_image_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 31F149912512474D00DF04D5 /* test_image_1.jpeg */; };
 		31FFD20B25102F3000C2A010 /* PhotoLibraryWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FFD20A25102F3000C2A010 /* PhotoLibraryWriter.swift */; };
@@ -148,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D845F725B1DD19001F96E0 /* Mixpanel in Frameworks */,
 				3187BD71250EB1FA0033E053 /* ComposableArchitecture in Frameworks */,
 				3157FA8025783DF3005001F5 /* TelemetryClient in Frameworks */,
 			);
@@ -461,6 +463,7 @@
 			packageProductDependencies = (
 				3187BD70250EB1FA0033E053 /* ComposableArchitecture */,
 				3157FA7F25783DF3005001F5 /* TelemetryClient */,
+				31D845F625B1DD19001F96E0 /* Mixpanel */,
 			);
 			productName = WallpapersApp;
 			productReference = 31BCE3A8250AC23300B8E259 /* Wallpapers.app */;
@@ -497,6 +500,7 @@
 				3187BD6F250EB1FA0033E053 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				315D89C2250FB41300DFF6FC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				3157FA7E25783DF3005001F5 /* XCRemoteSwiftPackageReference "SwiftClient" */,
+				31D845F525B1DD19001F96E0 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			productRefGroup = 31BCE3A9250AC23300B8E259 /* Products */;
 			projectDirPath = "";
@@ -869,6 +873,14 @@
 				version = 0.8.0;
 			};
 		};
+		31D845F525B1DD19001F96E0 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -886,6 +898,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3187BD6F250EB1FA0033E053 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		31D845F625B1DD19001F96E0 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31D845F525B1DD19001F96E0 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
