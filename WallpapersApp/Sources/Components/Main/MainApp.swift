@@ -22,7 +22,7 @@ struct MainApp: App {
 
   var body: some Scene {
     WindowGroup {
-      if NSClassFromString("XCTestCase") == nil {
+      if !isRunningTests {
         EditorView(store: store.scope(
           state: \.editor,
           action: MainAction.editor
