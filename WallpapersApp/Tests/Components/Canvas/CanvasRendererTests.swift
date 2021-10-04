@@ -19,7 +19,7 @@ final class CanvasRendererTests: XCTestCase {
 
     assertSnapshot(
       matching: defaultCanvasRenderer(state),
-      as: .image(precision: 0.99)
+      as: .image(precision: 0.99, scale: 1)
     )
   }
 
