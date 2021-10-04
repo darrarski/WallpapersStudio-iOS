@@ -32,15 +32,15 @@ extension Optional where Wrapped == AlertState<EditorAction> {
 extension AlertState {
   static var exportSuccess: AlertState {
     AlertState(
-      title: "Wallpaper exported",
-      message: "Cropped image exported to Photo Library"
+      title: TextState("Wallpaper exported"),
+      message: TextState("Cropped image exported to Photo Library")
     )
   }
 
   static var exportFailure: AlertState {
     AlertState(
-      title: "Error occured",
-      message: "Unable to export wallpaper to Photo Library"
+      title: TextState("Error occured"),
+      message: TextState("Unable to export wallpaper to Photo Library")
     )
   }
 }
